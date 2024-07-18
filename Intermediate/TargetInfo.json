@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "VampireSurvival",
+			"Path": "..\\Source\\VampireSurvival.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "VampireSurvivalEditor",
+			"Path": "..\\Source\\VampireSurvivalEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

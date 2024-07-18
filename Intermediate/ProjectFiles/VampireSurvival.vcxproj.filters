@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\VampireSurvival.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\VampireSurvival.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\VampireSurvivalEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Source\VampireSurvival">
+      <UniqueIdentifier>{A5DF2E74-C208-3B0B-B14A-22B02D4400D4}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\VampireSurvival\VampireSurvival.Build.cs">
+      <Filter>Source\VampireSurvival</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvival.cpp">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvival.h">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvival_Character.cpp">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvival_Character.h">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvival_Controller.cpp">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvival_Controller.h">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvival_GameMode.cpp">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvival_GameMode.h">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
