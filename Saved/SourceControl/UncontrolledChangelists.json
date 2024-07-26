@@ -5,14 +5,13 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/SeongWon/Level/VPLevel01.umap",
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/SeongWon/Level/Stage01.umap",
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/SeongWon/BP/BP_VSCharacter.uasset",
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/SeongWon/Input/IA_EnhancedMove.uasset",
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/SeongWon/Input/IMC_MyMapping.uasset",
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/SeongWon/BP/BP_VSGameMode.uasset",
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/SeongWon/BP_VSCharacter.uasset",
-				"C:/Work/Ureal Engine/L20240704/VampireSurvival/Content/TopDown/Blueprints/BP_TopDownCharacter.uasset"
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Level/Stage01.umap",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_VSGameMode.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_VSCharacter.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Characters/Mannequins/Animations/ABP_Manny.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_Enemy.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_EnemySpawner.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_AIController.uasset"
 			]
 		}
 	]

@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Work\\Ureal Engine\\L20240704\\VampireSurvival\\Source\\VampireSurvival\\VampireSurvival.Build.cs",
-		"C:\\Work\\Ureal Engine\\L20240704\\VampireSurvival\\Source\\VampireSurvival.Target.cs",
-		"C:\\Work\\Ureal Engine\\L20240704\\VampireSurvival\\Source\\VampireSurvivalEditor.Target.cs"
+		"C:\\Work\\Ureal Engine\\VampireSurvival\\VampireSurvival\\Source\\VampireSurvival\\VampireSurvival.Build.cs",
+		"C:\\Work\\Ureal Engine\\VampireSurvival\\VampireSurvival\\Source\\VampireSurvival.Target.cs",
+		"C:\\Work\\Ureal Engine\\VampireSurvival\\VampireSurvival\\Source\\VampireSurvivalEditor.Target.cs"
 	],
 	"EngineVersion": "5.4.2"
 }
