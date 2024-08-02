@@ -33,8 +33,8 @@ void AEnemyController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (BehaviorTree)
+	/*if (BehaviorTree)
 	{
-		RunBehaviorTree(BehaviorTree);
-	}
+		RunBehaviorTree();
+	}*/
 }

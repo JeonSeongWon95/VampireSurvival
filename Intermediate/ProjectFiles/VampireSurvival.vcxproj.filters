@@ -85,5 +85,38 @@
     <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvivalGameMode.h">
       <Filter>Source\VampireSurvival</Filter>
     </ClInclude>
+    <Filter Include="Source\VampireSurvival\MainmenuLevel">
+      <UniqueIdentifier>{D0D1D6F0-858C-3CF7-946A-E78833C63150}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuGameMode.cpp">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuGameMode.h">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuHUD.cpp">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuHUD.h">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuPawn.cpp">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuPawn.h">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuPlayerController.cpp">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuPlayerController.h">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuWidget.cpp">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuWidget.h">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

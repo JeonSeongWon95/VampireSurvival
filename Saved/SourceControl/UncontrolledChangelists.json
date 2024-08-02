@@ -11,7 +11,15 @@
 				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Characters/Mannequins/Animations/ABP_Manny.uasset",
 				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_Enemy.uasset",
 				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_EnemySpawner.uasset",
-				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_AIController.uasset"
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_AIController.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Level/MainMenu.umap",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_MainMenuPawn.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/MainMenu/BP_MainMenuPawn.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/MainMenu/BP_MainMenuWidget.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/BP_Ready.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/Check/BP_Ready.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/BP_Widget.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/MainMenu/WG_MainMenu.uasset"
 			]
 		}
 	]
