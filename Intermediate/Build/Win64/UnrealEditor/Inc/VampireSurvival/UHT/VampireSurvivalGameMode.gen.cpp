@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "VampireSurvival/VampireSurvivalGameMode.h"
+#include "VampireSurvival/MainGameLevel/VampireSurvivalGameMode.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeVampireSurvivalGameMode() {}
 
@@ -30,8 +30,8 @@ struct Z_Construct_UClass_AVampireSurvivalGameMode_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "HideCategories", "Info Rendering MovementReplication Replication Actor Input Movement Collision Rendering HLOD WorldPartition DataLayers Transformation" },
-		{ "IncludePath", "VampireSurvivalGameMode.h" },
-		{ "ModuleRelativePath", "VampireSurvivalGameMode.h" },
+		{ "IncludePath", "MainGameLevel/VampireSurvivalGameMode.h" },
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalGameMode.h" },
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 #endif // WITH_METADATA
@@ -78,14 +78,14 @@ AVampireSurvivalGameMode::~AVampireSurvivalGameMode() {}
 // End Class AVampireSurvivalGameMode
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalGameMode_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalGameMode_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AVampireSurvivalGameMode, AVampireSurvivalGameMode::StaticClass, TEXT("AVampireSurvivalGameMode"), &Z_Registration_Info_UClass_AVampireSurvivalGameMode, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalGameMode), 2391890859U) },
+		{ Z_Construct_UClass_AVampireSurvivalGameMode, AVampireSurvivalGameMode::StaticClass, TEXT("AVampireSurvivalGameMode"), &Z_Registration_Info_UClass_AVampireSurvivalGameMode, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalGameMode), 3058045341U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalGameMode_h_2745806871(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalGameMode_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalGameMode_h_3350043056(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalGameMode_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "VampireSurvival/EnemySpawner.h"
+#include "VampireSurvival/MainGameLevel/Enemy/EnemySpawner.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeEnemySpawner() {}
 
@@ -32,24 +32,24 @@ struct Z_Construct_UClass_AEnemySpawner_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
-		{ "IncludePath", "EnemySpawner.h" },
-		{ "ModuleRelativePath", "EnemySpawner.h" },
+		{ "IncludePath", "MainGameLevel/Enemy/EnemySpawner.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemySpawner.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SpawnTick_MetaData[] = {
 		{ "Category", "Timer" },
-		{ "ModuleRelativePath", "EnemySpawner.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemySpawner.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SpawnTime_MetaData[] = {
 		{ "Category", "Timer" },
-		{ "ModuleRelativePath", "EnemySpawner.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemySpawner.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Actor_MetaData[] = {
 		{ "Category", "SpawnActor" },
-		{ "ModuleRelativePath", "EnemySpawner.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemySpawner.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MyTransform_MetaData[] = {
 		{ "Category", "SpawnLocation" },
-		{ "ModuleRelativePath", "EnemySpawner.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemySpawner.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SpawnTick;
@@ -111,14 +111,14 @@ AEnemySpawner::~AEnemySpawner() {}
 // End Class AEnemySpawner
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemySpawner_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemySpawner_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemySpawner, AEnemySpawner::StaticClass, TEXT("AEnemySpawner"), &Z_Registration_Info_UClass_AEnemySpawner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemySpawner), 2880081943U) },
+		{ Z_Construct_UClass_AEnemySpawner, AEnemySpawner::StaticClass, TEXT("AEnemySpawner"), &Z_Registration_Info_UClass_AEnemySpawner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemySpawner), 3240970815U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemySpawner_h_374580475(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemySpawner_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemySpawner_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemySpawner_h_2669443504(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemySpawner_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemySpawner_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

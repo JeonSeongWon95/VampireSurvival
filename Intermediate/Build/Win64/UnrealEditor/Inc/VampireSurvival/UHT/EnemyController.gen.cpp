@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "VampireSurvival/EnemyController.h"
+#include "VampireSurvival/MainGameLevel/Enemy/EnemyController.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeEnemyController() {}
 
@@ -32,18 +32,18 @@ struct Z_Construct_UClass_AEnemyController_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "HideCategories", "Collision Rendering Transformation" },
-		{ "IncludePath", "EnemyController.h" },
-		{ "ModuleRelativePath", "EnemyController.h" },
+		{ "IncludePath", "MainGameLevel/Enemy/EnemyController.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemyController.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BehaviorTree_MetaData[] = {
 		{ "Category", "BehaviorTree" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "EnemyController.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemyController.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BlackboardComponent_MetaData[] = {
 		{ "Category", "BlackboardComponent" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "EnemyController.h" },
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/EnemyController.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BehaviorTree;
@@ -99,14 +99,14 @@ AEnemyController::~AEnemyController() {}
 // End Class AEnemyController
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemyController_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemyController, AEnemyController::StaticClass, TEXT("AEnemyController"), &Z_Registration_Info_UClass_AEnemyController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyController), 3052433228U) },
+		{ Z_Construct_UClass_AEnemyController, AEnemyController::StaticClass, TEXT("AEnemyController"), &Z_Registration_Info_UClass_AEnemyController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyController), 1846202147U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemyController_h_1899230959(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemyController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_EnemyController_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_3688667274(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

@@ -11,8 +11,6 @@
     <None Include="..\..\Source\VampireSurvivalEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
-    <None Include="..\..\.gitignore" />
-    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -28,36 +26,6 @@
     <Filter Include="Source\VampireSurvival">
       <UniqueIdentifier>{A5DF2E74-C208-3B0B-B14A-22B02D4400D4}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\VampireSurvival\Enemy.cpp">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\Enemy.h">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemyBehaviorTree.cpp">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemyBehaviorTree.h">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemyBlackboardData.cpp">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemyBlackboardData.h">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemyController.cpp">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemyController.h">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemySpawner.cpp">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemySpawner.h">
-      <Filter>Source\VampireSurvival</Filter>
-    </ClInclude>
     <None Include="..\..\Source\VampireSurvival\VampireSurvival.Build.cs">
       <Filter>Source\VampireSurvival</Filter>
     </None>
@@ -67,23 +35,59 @@
     <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvival.h">
       <Filter>Source\VampireSurvival</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvivalCharacter.cpp">
-      <Filter>Source\VampireSurvival</Filter>
+    <Filter Include="Source\VampireSurvival\MainGameLevel">
+      <UniqueIdentifier>{FB40DB8F-CD64-35FC-A6BA-FF2018B8D45B}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvivalCharacter.h">
-      <Filter>Source\VampireSurvival</Filter>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvivalController.cpp">
-      <Filter>Source\VampireSurvival</Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvivalController.h">
-      <Filter>Source\VampireSurvival</Filter>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvivalGameMode.cpp">
-      <Filter>Source\VampireSurvival</Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvivalGameMode.h">
-      <Filter>Source\VampireSurvival</Filter>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <Filter Include="Source\VampireSurvival\MainGameLevel\Enemy">
+      <UniqueIdentifier>{C82601E8-BA48-320B-AA53-C93AF897808F}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBehaviorTree.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBehaviorTree.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBlackboardData.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBlackboardData.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyController.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyController.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClInclude>
     <Filter Include="Source\VampireSurvival\MainmenuLevel">
       <UniqueIdentifier>{D0D1D6F0-858C-3CF7-946A-E78833C63150}</UniqueIdentifier>

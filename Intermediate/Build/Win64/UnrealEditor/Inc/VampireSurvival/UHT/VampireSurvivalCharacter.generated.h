@@ -4,7 +4,7 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-// IWYU pragma: private, include "VampireSurvivalCharacter.h"
+// IWYU pragma: private, include "MainGameLevel/VampireSurvivalCharacter.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
@@ -14,7 +14,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define VAMPIRESURVIVAL_VampireSurvivalCharacter_generated_h
 
-#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalCharacter_h_13_INCLASS_NO_PURE_DECLS \
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execZoominMode);
+
+
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAVampireSurvivalCharacter(); \
 	friend struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics; \
@@ -23,7 +27,7 @@ public: \
 	DECLARE_SERIALIZER(AVampireSurvivalCharacter)
 
 
-#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalCharacter_h_13_ENHANCED_CONSTRUCTORS \
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AVampireSurvivalCharacter(AVampireSurvivalCharacter&&); \
@@ -35,12 +39,13 @@ public: \
 	NO_API virtual ~AVampireSurvivalCharacter();
 
 
-#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalCharacter_h_10_PROLOG
-#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalCharacter_h_13_GENERATED_BODY \
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_10_PROLOG
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalCharacter_h_13_INCLASS_NO_PURE_DECLS \
-	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalCharacter_h_13_ENHANCED_CONSTRUCTORS \
+	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_INCLASS_NO_PURE_DECLS \
+	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +53,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> VAMPIRESURVIVAL_API UClass* StaticClass<class AVampireSurvivalCharacter>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalCharacter_h
+#define CURRENT_FILE_ID FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

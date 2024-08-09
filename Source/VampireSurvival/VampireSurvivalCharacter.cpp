@@ -17,10 +17,7 @@ AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 	Camera->SetupAttachment(CameraBoom);
 
 	CameraBoom->TargetArmLength = 800;
-
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
-	bUseControllerRotationRoll = false;
+	CameraBoom->SetRelativeRotation(FRotator(-50.0f, 0.0, 0.0));
 
 }
 

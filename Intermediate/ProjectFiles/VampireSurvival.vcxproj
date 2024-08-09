@@ -252,48 +252,46 @@
     <None Include="..\..\VampireSurvival.uproject"/>
     <None Include="..\..\Source\VampireSurvival.Target.cs"/>
     <None Include="..\..\Source\VampireSurvivalEditor.Target.cs"/>
-    <None Include="..\..\.gitignore"/>
-    <None Include="..\..\.vsconfig"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultInput.ini"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\Enemy.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\Enemy.h"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemyBehaviorTree.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemyBehaviorTree.h"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemyBlackboardData.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemyBlackboardData.h"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemyController.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemyController.h"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\EnemySpawner.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\EnemySpawner.h"/>
     <None Include="..\..\Source\VampireSurvival\VampireSurvival.Build.cs"/>
     <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvival.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvival.h"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvivalCharacter.cpp">
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvivalCharacter.h"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvivalController.cpp">
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.h"/>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvivalController.h"/>
-    <ClCompile Include="..\..\Source\VampireSurvival\VampireSurvivalGameMode.cpp">
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.h"/>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClInclude Include="..\..\Source\VampireSurvival\VampireSurvivalGameMode.h"/>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.h"/>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.h"/>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBehaviorTree.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBehaviorTree.h"/>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBlackboardData.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBlackboardData.h"/>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyController.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyController.h"/>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.h"/>
     <ClCompile Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuGameMode.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>

@@ -2,10 +2,11 @@
 #include "MainMenuHUD.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "VampireSurvival/MainmenuLevel/MainMenuWidget.h"
 
 AMainMenuHUD::AMainMenuHUD()
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> MyMain(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/SeongWon/Widget/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget'_C"));
+	static ConstructorHelpers::FClassFinder<UMainMenuWidget> MyMain(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/SeongWon/Widget/MainMenu/BP_MainMenuWidget.BP_MainMenuWidget_C'"));
 
 	if(MyMain.Succeeded())
 	{

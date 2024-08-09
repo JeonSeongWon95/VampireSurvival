@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "VampireSurvival/VampireSurvivalController.h"
+#include "VampireSurvival/MainGameLevel/VampireSurvivalController.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeVampireSurvivalController() {}
 
@@ -31,12 +31,12 @@ struct Z_Construct_UClass_AVampireSurvivalController_Statics
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "HideCategories", "Collision Rendering Transformation" },
-		{ "IncludePath", "VampireSurvivalController.h" },
-		{ "ModuleRelativePath", "VampireSurvivalController.h" },
+		{ "IncludePath", "MainGameLevel/VampireSurvivalController.h" },
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalController.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InputMappingContext_MetaData[] = {
 		{ "Category", "Input" },
-		{ "ModuleRelativePath", "VampireSurvivalController.h" },
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalController.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InputMappingContext;
@@ -90,14 +90,14 @@ AVampireSurvivalController::~AVampireSurvivalController() {}
 // End Class AVampireSurvivalController
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalController_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AVampireSurvivalController, AVampireSurvivalController::StaticClass, TEXT("AVampireSurvivalController"), &Z_Registration_Info_UClass_AVampireSurvivalController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalController), 19664721U) },
+		{ Z_Construct_UClass_AVampireSurvivalController, AVampireSurvivalController::StaticClass, TEXT("AVampireSurvivalController"), &Z_Registration_Info_UClass_AVampireSurvivalController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalController), 579086718U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalController_h_1053259216(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_VampireSurvivalController_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_1708865456(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration
