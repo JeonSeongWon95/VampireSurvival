@@ -11,8 +11,6 @@
     <None Include="..\..\Source\VampireSurvivalEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
-    <None Include="..\..\.gitignore" />
-    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -40,6 +38,7 @@
     <Filter Include="Source\VampireSurvival\MainGameLevel">
       <UniqueIdentifier>{FB40DB8F-CD64-35FC-A6BA-FF2018B8D45B}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Bullet.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
@@ -88,6 +87,26 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\WeaponStruct.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
+=======
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+>>>>>>> ca43513 (git 수정)
     <Filter Include="Source\VampireSurvival\MainGameLevel\Enemy">
       <UniqueIdentifier>{C82601E8-BA48-320B-AA53-C93AF897808F}</UniqueIdentifier>
     </Filter>

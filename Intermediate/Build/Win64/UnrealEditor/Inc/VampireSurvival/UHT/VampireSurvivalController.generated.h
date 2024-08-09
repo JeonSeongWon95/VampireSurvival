@@ -14,7 +14,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define VAMPIRESURVIVAL_VampireSurvivalController_generated_h
 
+<<<<<<< HEAD
 #define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_INCLASS_NO_PURE_DECLS \
+=======
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_INCLASS_NO_PURE_DECLS \
+>>>>>>> ca43513 (git 수정)
 private: \
 	static void StaticRegisterNativesAVampireSurvivalController(); \
 	friend struct Z_Construct_UClass_AVampireSurvivalController_Statics; \
@@ -23,7 +27,11 @@ public: \
 	DECLARE_SERIALIZER(AVampireSurvivalController)
 
 
+<<<<<<< HEAD
 #define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_ENHANCED_CONSTRUCTORS \
+=======
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_ENHANCED_CONSTRUCTORS \
+>>>>>>> ca43513 (git 수정)
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AVampireSurvivalController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,12 +45,21 @@ public: \
 	NO_API virtual ~AVampireSurvivalController();
 
 
+<<<<<<< HEAD
 #define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_10_PROLOG
 #define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_INCLASS_NO_PURE_DECLS \
 	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_ENHANCED_CONSTRUCTORS \
+=======
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_10_PROLOG
+#define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_GENERATED_BODY \
+PRAGMA_DISABLE_DEPRECATION_WARNINGS \
+public: \
+	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_INCLASS_NO_PURE_DECLS \
+	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h_13_ENHANCED_CONSTRUCTORS \
+>>>>>>> ca43513 (git 수정)
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -50,7 +67,11 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> VAMPIRESURVIVAL_API UClass* StaticClass<class AVampireSurvivalController>();
 
 #undef CURRENT_FILE_ID
+<<<<<<< HEAD
 #define CURRENT_FILE_ID FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h
+=======
+#define CURRENT_FILE_ID FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalController_h
+>>>>>>> ca43513 (git 수정)
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

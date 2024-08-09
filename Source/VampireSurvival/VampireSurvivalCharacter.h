@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-#include "WeaponStruct.h"
 #include "VampireSurvivalCharacter.generated.h"
 
 UCLASS()
@@ -39,42 +38,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	TObjectPtr<class UInputAction> IA_EnhancedMove;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-	TObjectPtr<class UInputAction> IA_Run;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input")
-	TObjectPtr<class UInputAction> IA_OnAim;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input")
-	TObjectPtr<class UInputAction> IA_Fire;
-
-	UPROPERTY()
-	FTimerHandle CharacterTimer;
-
 public:
-
-	UFUNCTION()
-	void ZoominMode();
 
 	void EnhancedMove(const FInputActionValue& Value);
 
-	void PressedRun(const FInputActionValue& Value);
-
-	void ReleasedRun(const FInputActionValue& Value);
-
-	void PressedAim(const FInputActionValue& Value);
-
-	void ReleasedAim(const FInputActionValue& Value);
-
-	UFUNCTION()
-	void Weaponfire();
-
-	void AimMode();
-
-	UPROPERTY()
-	bool bIsOnAim;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-	TObjectPtr<class UCharacterMovementComponent> VSCharacterMovement;
 
 };

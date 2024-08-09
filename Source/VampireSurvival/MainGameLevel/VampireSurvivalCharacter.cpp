@@ -53,6 +53,7 @@ AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 	IA_OnAim = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_OnAim.IA_OnAim'"));
 
 
+
 }
 
 
@@ -74,6 +75,7 @@ void AVampireSurvivalCharacter::Tick(float DeltaTime)
 	{
 
 	}
+
 }
 
 void AVampireSurvivalCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -94,6 +96,11 @@ void AVampireSurvivalCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 
 }
 
+void AVampireSurvivalCharacter::ZoominMode()
+{
+}
+
+
 void AVampireSurvivalCharacter::EnhancedMove(const FInputActionValue& Value)
 {
 	FVector2D NewValue = Value.Get<FVector2D>();
@@ -106,6 +113,7 @@ void AVampireSurvivalCharacter::EnhancedMove(const FInputActionValue& Value)
 	AddMovementInput(ForwardVector, NewValue.X);
 	AddMovementInput(RightVector, NewValue.Y);
 }
+
 
 void AVampireSurvivalCharacter::PressedRun(const FInputActionValue& Value)
 {

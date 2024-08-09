@@ -6,7 +6,10 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "VampireSurvival/MainGameLevel/VampireSurvivalCharacter.h"
+<<<<<<< HEAD
 #include "Runtime/Engine/Classes/Engine/TimerHandle.h"
+=======
+>>>>>>> ca43513 (git 수정)
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeVampireSurvivalCharacter() {}
 
@@ -22,8 +25,13 @@ VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AVampireSurvivalCharacter();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AVampireSurvivalCharacter_NoRegister();
 // End Cross Module References
 
+<<<<<<< HEAD
 // Begin Class AVampireSurvivalCharacter Function Weaponfire
 struct Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire_Statics
+=======
+// Begin Class AVampireSurvivalCharacter Function ZoominMode
+struct Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics
+>>>>>>> ca43513 (git 수정)
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -32,12 +40,18 @@ struct Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
+<<<<<<< HEAD
 const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Weaponfire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire()
+=======
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "ZoominMode", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode()
+>>>>>>> ca43513 (git 수정)
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
+<<<<<<< HEAD
 		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire_Statics::FuncParams);
 	}
 	return ReturnFunction;
@@ -50,13 +64,31 @@ DEFINE_FUNCTION(AVampireSurvivalCharacter::execWeaponfire)
 	P_NATIVE_END;
 }
 // End Class AVampireSurvivalCharacter Function Weaponfire
+=======
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AVampireSurvivalCharacter::execZoominMode)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ZoominMode();
+	P_NATIVE_END;
+}
+// End Class AVampireSurvivalCharacter Function ZoominMode
+>>>>>>> ca43513 (git 수정)
 
 // Begin Class AVampireSurvivalCharacter
 void AVampireSurvivalCharacter::StaticRegisterNativesAVampireSurvivalCharacter()
 {
 	UClass* Class = AVampireSurvivalCharacter::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+<<<<<<< HEAD
 		{ "Weaponfire", &AVampireSurvivalCharacter::execWeaponfire },
+=======
+		{ "ZoominMode", &AVampireSurvivalCharacter::execZoominMode },
+>>>>>>> ca43513 (git 수정)
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -86,6 +118,7 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_EnhancedMove_MetaData[] = {
 		{ "Category", "Input" },
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+<<<<<<< HEAD
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_Run_MetaData[] = {
 		{ "Category", "Input" },
@@ -109,6 +142,8 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 		{ "Category", "Movement" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+=======
+>>>>>>> ca43513 (git 수정)
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Camera;
@@ -124,7 +159,11 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+<<<<<<< HEAD
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire, "Weaponfire" }, // 2717613170
+=======
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode, "ZoominMode" }, // 1328208230
+>>>>>>> ca43513 (git 수정)
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -194,6 +233,7 @@ AVampireSurvivalCharacter::~AVampireSurvivalCharacter() {}
 // End Class AVampireSurvivalCharacter
 
 // Begin Registration
+<<<<<<< HEAD
 struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
@@ -202,6 +242,16 @@ struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Sou
 };
 static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_3948502203(TEXT("/Script/VampireSurvival"),
 	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
+=======
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
+{
+	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
+		{ Z_Construct_UClass_AVampireSurvivalCharacter, AVampireSurvivalCharacter::StaticClass, TEXT("AVampireSurvivalCharacter"), &Z_Registration_Info_UClass_AVampireSurvivalCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalCharacter), 3784334049U) },
+	};
+};
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_148622011(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
+>>>>>>> ca43513 (git 수정)
 	nullptr, 0,
 	nullptr, 0);
 // End Registration
