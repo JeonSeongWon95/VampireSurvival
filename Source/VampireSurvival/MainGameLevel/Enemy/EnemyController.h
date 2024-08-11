@@ -13,10 +13,13 @@ public:
 	AEnemyController();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BehaviorTree")
-	TObjectPtr<class UBehaviorTreeComponent> BehaviorTree;
+	TObjectPtr<class UBehaviorTree> BehaviorTree;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BlackboardComponent")
 	TObjectPtr<class UBlackboardComponent> BlackboardComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "BlackboardComponent")
+	TObjectPtr<class UBlackboardData> BlackboardData;
 	
 	virtual void OnPossess(APawn* InPawn) override;
 	virtual void BeginPlay() override;
