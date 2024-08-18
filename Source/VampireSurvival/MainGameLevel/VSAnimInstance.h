@@ -23,7 +23,16 @@ protected:
 	TObjectPtr<class AVampireSurvivalCharacter> Player;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "State")
-	bool bIsOnAim;
+	TObjectPtr<class AWeapon> EquipWeapon;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "State")
+	bool bIsFire;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "State")
+	bool bIsReload;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "State")
+	bool bIsEquip;
 
 	
 };

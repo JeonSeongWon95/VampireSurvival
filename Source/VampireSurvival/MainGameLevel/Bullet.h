@@ -21,10 +21,16 @@ protected:
 	virtual void BeginPlay() override;
 	
 	UPROPERTY()
-	TArray<class UStaticMeshComponent*> StaticMeshes;
+	TObjectPtr<class UStaticMeshComponent> StaticMesh;
 
 	UPROPERTY()
-	TArray<class UBoxComponent*> BoxCollisions;
+	TObjectPtr<class UBoxComponent> BoxCollision;
+
+	UPROPERTY()
+	float Speed;
+
+	UPROPERTY()
+	float SpreadAngle;
 
 public:	
 	// Called every frame
@@ -33,5 +39,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bullet", meta = (ExposOnSpawn = true))
 	FWeaponStruct WeaponType;
 
+	UPROPERTY()
+	uint8 bIsRight;
+
+	UPROPERTY()
+	uint8 bIsLeft;
 
 };

@@ -1,22 +1,12 @@
 <<<<<<< HEAD
 M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Bullet.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VSAnimInstance.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBehaviorTree.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuPawn.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuWidget.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuPlayerController.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuHUD.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\EnemyController.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuGameMode.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\MyActor.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.h
-M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalPlayerState.h
 M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Weapon.h
 M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\WeaponStruct.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBehaviorTree.h
 M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBlackboardData.h
+<<<<<<< HEAD
 =======
 C:\Work\Ureal Engine\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.h
 C:\Work\Ureal Engine\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.h
@@ -32,3 +22,17 @@ C:\Work\Ureal Engine\VampireSurvival\VampireSurvival\Source\VampireSurvival\Main
 C:\Work\Ureal Engine\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuWidget.h
 C:\Work\Ureal Engine\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuGameMode.h
 >>>>>>> ca43513 (git 수정)
+=======
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\EnemyController.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuHUD.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuPawn.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuPlayerController.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuGameMode.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalController.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\MyActor.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainmenuLevel\MainMenuWidget.h
+M:\Game\Unreal\VampireSurvival\VampireSurvival\Source\VampireSurvival\MainGameLevel\VSAnimInstance.h
+>>>>>>> 5310428 (Player 기본 Animation Replicated 처리)

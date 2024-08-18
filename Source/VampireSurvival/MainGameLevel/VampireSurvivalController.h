@@ -13,10 +13,12 @@ class VAMPIRESURVIVAL_API AVampireSurvivalController : public APlayerController
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnyWhere, BluePrintReadWrite, Category = "Input")
-	TObjectPtr<class UInputMappingContext> InputMappingContext;
 
 	virtual void BeginPlay() override;
 
 	virtual void OnPossess(APawn* aPawn) override;
+
+
+	UPROPERTY()
+	FTimerHandle TimerHandle;
 };

@@ -9,6 +9,8 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+struct FInputActionValue;
 #ifdef VAMPIRESURVIVAL_VampireSurvivalCharacter_generated_h
 #error "VampireSurvivalCharacter.generated.h already included, missing '#pragma once' in VampireSurvivalCharacter.h"
 #endif
@@ -16,9 +18,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 <<<<<<< HEAD
 #define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual void Client_PressedPickUpWeaponKey_Implementation(AActor* NewWeapon); \
+	virtual void Server_PressedPickUpWeaponKey_Implementation(); \
+	virtual void Server_RequestReload_Implementation(bool Newbool); \
+	virtual void Server_RequestFire_Implementation(bool Newbool); \
+	virtual void ChanageMovementSpeed_Implementation(float Speed); \
+	virtual void PlayerIsNotRun_Implementation(); \
+	virtual void PlayerIsRun_Implementation(); \
+	DECLARE_FUNCTION(execClient_PressedPickUpWeaponKey); \
+	DECLARE_FUNCTION(execServer_PressedPickUpWeaponKey); \
+	DECLARE_FUNCTION(execFindNearWeapon); \
+	DECLARE_FUNCTION(execWeaponNotfire); \
+	DECLARE_FUNCTION(execServer_RequestReload); \
+	DECLARE_FUNCTION(execServer_RequestFire); \
+	DECLARE_FUNCTION(execOnReq_Reload); \
+	DECLARE_FUNCTION(execOnReq_Fire); \
+	DECLARE_FUNCTION(execChanageMovementSpeed); \
+	DECLARE_FUNCTION(execPlayerIsNotRun); \
+	DECLARE_FUNCTION(execPlayerIsRun); \
 	DECLARE_FUNCTION(execWeaponfire);
 
 
+#define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_14_CALLBACK_WRAPPERS
 #define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_14_INCLASS_NO_PURE_DECLS \
 =======
 #define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
@@ -32,7 +53,14 @@ private: \
 	friend struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics; \
 public: \
 	DECLARE_CLASS(AVampireSurvivalCharacter, ACharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/VampireSurvival"), NO_API) \
-	DECLARE_SERIALIZER(AVampireSurvivalCharacter)
+	DECLARE_SERIALIZER(AVampireSurvivalCharacter) \
+	enum class ENetFields_Private : uint16 \
+	{ \
+		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
+		bIsfire=NETFIELD_REP_START, \
+		bIsReload, \
+		NETFIELD_REP_END=bIsReload	}; \
+	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
 <<<<<<< HEAD
@@ -57,6 +85,7 @@ public: \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_14_CALLBACK_WRAPPERS \
 	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_14_INCLASS_NO_PURE_DECLS \
 	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_14_ENHANCED_CONSTRUCTORS \
 =======

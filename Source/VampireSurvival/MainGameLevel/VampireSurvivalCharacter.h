@@ -48,8 +48,17 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input")
 	TObjectPtr<class UInputAction> IA_Fire;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input")
+	TObjectPtr<class UInputAction> IA_PickUpWeapon;
+
+	UPROPERTY(EditAnyWhere, BluePrintReadWrite, Category = "Input")
+	TObjectPtr<class UInputMappingContext> InputMappingContext;
+
 	UPROPERTY()
 	FTimerHandle CharacterTimer;
+
+	UPROPERTY()
+	float FireRate;
 
 public:
 
@@ -62,19 +71,57 @@ public:
 
 	void ReleasedRun(const FInputActionValue& Value);
 
-	void PressedAim(const FInputActionValue& Value);
+	void PressedPickUpKey(const FInputActionValue& Value);
 
-	void ReleasedAim(const FInputActionValue& Value);
+	void PressedSpawnRifle(const FInputActionValue& Value);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "EquipWeapon")
+	TObjectPtr<class AWeapon> EquipWeapon;
 
 	UFUNCTION()
-	void Weaponfire();
-
-	void AimMode();
-
-	UPROPERTY()
-	bool bIsOnAim;
+	void Weaponfire(const FInputActionValue& Value);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	TObjectPtr<class UCharacterMovementComponent> VSCharacterMovement;
 
+	UFUNCTION(Server, Reliable)
+	void PlayerIsRun();
+
+	UFUNCTION(Server, Reliable)
+	void PlayerIsNotRun();
+
+	UFUNCTION(NetMulticast, Reliable)
+	void ChanageMovementSpeed(float Speed);
+
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+	UPROPERTY(ReplicatedUsing = OnReq_Fire)
+	bool bIsfire;
+
+	UPROPERTY(ReplicatedUsing = OnReq_Reload)
+	bool bIsReload;
+
+	UFUNCTION()
+	void OnReq_Fire();
+
+	UFUNCTION()
+	void OnReq_Reload();
+
+	UFUNCTION(Server, Reliable)
+	void Server_RequestFire(bool Newbool);
+
+	UFUNCTION(Server, Reliable)
+	void Server_RequestReload(bool Newbool);
+
+	UFUNCTION()
+	void WeaponNotfire(const FInputActionValue& Value);
+
+	UFUNCTION()
+	AActor* FindNearWeapon();
+
+	UFUNCTION(Server, Reliable)
+	void Server_PressedPickUpWeaponKey();
+
+	UFUNCTION(Client, Reliable)
+	void Client_PressedPickUpWeaponKey(AActor* NewWeapon);
 };

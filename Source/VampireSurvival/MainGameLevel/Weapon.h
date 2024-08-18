@@ -13,22 +13,37 @@ class VAMPIRESURVIVAL_API AWeapon : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AWeapon();
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY()
-	TObjectPtr<class UStaticMeshComponent> WeaponMesh;
-
-	UPROPERTY()
-	FWeaponStruct WeaponData;
+	TObjectPtr<ACharacter> WeaponOwner;
 
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION()
+	void SetWeaponData(FWeaponStruct Data);
+
+	UFUNCTION()
+	FWeaponStruct GetWeaponData();
+
+	UFUNCTION()
+	virtual void DoEquipWeapon(ACharacter* OwingCharacter);
+
+	UFUNCTION()
+	virtual void DoUnEquipWeapon(ACharacter* OwingCharacter);
+
+	UFUNCTION()
+	virtual void FireWeapon();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponData")
+	FWeaponStruct WeaponData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponData")
+	TObjectPtr<class UStaticMeshComponent> WeaponMesh;
 
 };

@@ -69,6 +69,12 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalGameMode.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalPlayerState.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalPlayerState.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VSAnimInstance.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
