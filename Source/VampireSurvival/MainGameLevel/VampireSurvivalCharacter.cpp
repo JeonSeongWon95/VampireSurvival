@@ -56,7 +56,6 @@ AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 
 	IA_EnhancedMove = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_EnhancedMove.IA_EnhancedMove'"));
 	IA_Run = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_Run.IA_Run'"));
-	IA_OnAim = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_OnAim.IA_OnAim'"));
 	IA_Fire = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_Fire.IA_Fire'"));
 
 	FireRate = 0.0;

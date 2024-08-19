@@ -8,3 +8,15 @@ AMainMenuPlayerController::AMainMenuPlayerController()
 
 
 }
+
+void AMainMenuPlayerController::BeingPlay()
+{
+	Super::BeginPlay();
+
+
+}
+
+void AMainMenuPlayerController::SandLoginData(FString* ID, FString* Password)
+{
+
+}

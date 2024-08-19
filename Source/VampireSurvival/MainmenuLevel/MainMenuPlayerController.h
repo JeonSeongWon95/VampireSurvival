@@ -16,4 +16,11 @@ class VAMPIRESURVIVAL_API AMainMenuPlayerController : public APlayerController
 	
 public:
 	AMainMenuPlayerController();
+
+	UFUNCTION()
+	virtual void BeingPlay() override;
+
+	UFUNCTION()
+	void SandLoginData(FString* ID, FString* Password);
+
 };

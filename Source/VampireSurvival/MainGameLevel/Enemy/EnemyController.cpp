@@ -19,7 +19,7 @@ AEnemyController::AEnemyController()
 	}
 
 	
-	BehaviorTree = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorTree"));
+	//BehaviorTree = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorTree"));
 	
 	BlackboardComponent = GetBlackboardComponent();
 	//TObjectPtr<>로 선언된 변수는 바로 사용이 불가하다. Get 함수를 이용해서 가져와야한다.

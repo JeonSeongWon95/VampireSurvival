@@ -16,12 +16,25 @@ class VAMPIRESURVIVAL_API UMainMenuWidget : public UUserWidget
 
 private:
 	UPROPERTY(meta = (BindWidget))
-	TObjectPtr<class UButton> Button_Login;
+	TObjectPtr<class UButton> Button_CreateGame;
 
 	UPROPERTY(meta = (BindWidget))
-	TObjectPtr<class UButton> Button_Signup;
+	TObjectPtr<class UButton> Button_JoinGame;
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UButton> Button_Quit;
+
+
+public:
+	UFUNCTION()
+	void ClickedCreateGame();
+
+	UFUNCTION()
+	void ClickedJoinGame();
+
+	UFUNCTION()
+	void ClickedQuitGame();
+
+	virtual void NativeConstruct() override;
 
 };

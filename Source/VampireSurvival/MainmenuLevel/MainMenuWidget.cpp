@@ -3,3 +3,18 @@
 
 #include "MainMenuWidget.h"
 
+void UMainMenuWidget::ClickedCreateGame()
+{
+}
+
+void UMainMenuWidget::ClickedJoinGame()
+{
+}
+
+void UMainMenuWidget::ClickedQuitGame()
+{
+}
+
+void UMainMenuWidget::NativeConstruct()
+{
+}

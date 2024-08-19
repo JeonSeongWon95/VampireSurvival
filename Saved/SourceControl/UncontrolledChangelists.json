@@ -5,6 +5,28 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_VSCharacter.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Level/Stage01.umap",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_VSGameMode.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Level/Menu.umap",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Level/Stage01.umap",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/MainMenu/BP_MainMenuWidget.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/MainMenu/WG_JoinGameWidget.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/MainMenu/WG_LoginWidget.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/BP_Box.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/BP_Land.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/BP_Main.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/Material.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/Material_001.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/Material_002.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/Sm_cube_land.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/Sm_cube_wood.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/test/StackBox.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Cursor/FX_Cursor.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Cursor/M_Cursor.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Cursor/SM_CursorMesh.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/Cursor/T_Arrow.uasset",
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Widget/MainMenu/WG_CreateGameWidget.uasset",
 				"M:/Game/Unreal/VampireSurvival/VampireSurvival/Content/SeongWon/Animation/Pistol/MM_Pistol_Equip_Additive.uasset",
 				"M:/Game/Unreal/VampireSurvival/VampireSurvival/Content/SeongWon/Animation/Pistol/MM_Pistol_Fire.uasset",
 				"M:/Game/Unreal/VampireSurvival/VampireSurvival/Content/SeongWon/Animation/Pistol/MM_Pistol_Reload.uasset",
@@ -63,10 +85,7 @@
 				"M:/Game/Unreal/VampireSurvival/VampireSurvival/Content/SeongWon/Animation/Pistol/Weap_Pistol_Fire.uasset",
 				"M:/Game/Unreal/VampireSurvival/VampireSurvival/Content/SeongWon/Animation/Pistol/Weap_Pistol_Reload.uasset",
 				"M:/Game/Unreal/VampireSurvival/VampireSurvival/Content/SeongWon/BP/VP_VampireSurvivalCharacter.uasset",
-				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_VSCharacter.uasset",
-				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/Level/Stage01.umap",
-				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_Character.uasset",
-				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_VSGameMode.uasset"
+				"C:/Work/Ureal Engine/VampireSurvival/VampireSurvival/Content/SeongWon/BP/BP_Character.uasset"
 			]
 		}
 	]

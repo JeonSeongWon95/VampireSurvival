@@ -14,11 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define VAMPIRESURVIVAL_EnemyController_generated_h
 
-<<<<<<< HEAD
-#define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_INCLASS_NO_PURE_DECLS \
-=======
 #define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_INCLASS_NO_PURE_DECLS \
->>>>>>> ca43513 (git 수정)
 private: \
 	static void StaticRegisterNativesAEnemyController(); \
 	friend struct Z_Construct_UClass_AEnemyController_Statics; \
@@ -27,11 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AEnemyController)
 
 
-<<<<<<< HEAD
-#define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_ENHANCED_CONSTRUCTORS \
-=======
 #define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_ENHANCED_CONSTRUCTORS \
->>>>>>> ca43513 (git 수정)
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AEnemyController(AEnemyController&&); \
@@ -43,21 +35,12 @@ public: \
 	NO_API virtual ~AEnemyController();
 
 
-<<<<<<< HEAD
-#define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_7_PROLOG
-#define FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_GENERATED_BODY \
-PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-public: \
-	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_INCLASS_NO_PURE_DECLS \
-	FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_ENHANCED_CONSTRUCTORS \
-=======
 #define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_7_PROLOG
 #define FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_INCLASS_NO_PURE_DECLS \
 	FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h_10_ENHANCED_CONSTRUCTORS \
->>>>>>> ca43513 (git 수정)
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -65,11 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> VAMPIRESURVIVAL_API UClass* StaticClass<class AEnemyController>();
 
 #undef CURRENT_FILE_ID
-<<<<<<< HEAD
-#define CURRENT_FILE_ID FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h
-=======
 #define CURRENT_FILE_ID FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_EnemyController_h
->>>>>>> ca43513 (git 수정)
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
