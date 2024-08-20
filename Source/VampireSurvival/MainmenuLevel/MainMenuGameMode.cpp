@@ -4,8 +4,11 @@
 #include "MainMenuGameMode.h"
 #include "MainMenuHUD.h"
 #include "MainMenuPawn.h"
+#include "MainMenuPlayerController.h"
 
 AMainMenuGameMode::AMainMenuGameMode()
 {
 	DefaultPawnClass = AMainMenuPawn::StaticClass();
+	PlayerControllerClass = AMainMenuPlayerController::StaticClass();
+	HUDClass = AMainMenuHUD::StaticClass();
 }

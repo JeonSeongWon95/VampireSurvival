@@ -11,7 +11,7 @@ AMainMenuPawn::AMainMenuPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Camera->SetupAttachment(RootComponent);
+	RootComponent = Camera;
 
 }
 

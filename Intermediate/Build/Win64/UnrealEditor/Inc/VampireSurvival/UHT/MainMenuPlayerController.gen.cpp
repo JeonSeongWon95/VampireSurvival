@@ -16,6 +16,35 @@ VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AMainMenuPlayerController();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AMainMenuPlayerController_NoRegister();
 // End Cross Module References
 
+// Begin Class AMainMenuPlayerController Function BindSocket
+struct Z_Construct_UFunction_AMainMenuPlayerController_BindSocket_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainmenuLevel/MainMenuPlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainMenuPlayerController_BindSocket_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainMenuPlayerController, nullptr, "BindSocket", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainMenuPlayerController_BindSocket_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainMenuPlayerController_BindSocket_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMainMenuPlayerController_BindSocket()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainMenuPlayerController_BindSocket_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMainMenuPlayerController::execBindSocket)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->BindSocket();
+	P_NATIVE_END;
+}
+// End Class AMainMenuPlayerController Function BindSocket
+
 // Begin Class AMainMenuPlayerController Function SandLoginData
 struct Z_Construct_UFunction_AMainMenuPlayerController_SandLoginData_Statics
 {
@@ -68,6 +97,7 @@ void AMainMenuPlayerController::StaticRegisterNativesAMainMenuPlayerController()
 {
 	UClass* Class = AMainMenuPlayerController::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "BindSocket", &AMainMenuPlayerController::execBindSocket },
 		{ "SandLoginData", &AMainMenuPlayerController::execSandLoginData },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -91,6 +121,7 @@ struct Z_Construct_UClass_AMainMenuPlayerController_Statics
 #endif // WITH_METADATA
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AMainMenuPlayerController_BindSocket, "BindSocket" }, // 2696541237
 		{ &Z_Construct_UFunction_AMainMenuPlayerController_SandLoginData, "SandLoginData" }, // 2868617148
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -136,14 +167,14 @@ AMainMenuPlayerController::~AMainMenuPlayerController() {}
 // End Class AMainMenuPlayerController
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainMenuPlayerController, AMainMenuPlayerController::StaticClass, TEXT("AMainMenuPlayerController"), &Z_Registration_Info_UClass_AMainMenuPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainMenuPlayerController), 4076008008U) },
+		{ Z_Construct_UClass_AMainMenuPlayerController, AMainMenuPlayerController::StaticClass, TEXT("AMainMenuPlayerController"), &Z_Registration_Info_UClass_AMainMenuPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainMenuPlayerController), 105578893U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_31372069(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_291739719(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuPlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

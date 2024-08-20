@@ -22,4 +22,9 @@ public:
 	UFUNCTION()
 	void SandLoginData(FString &ID, FString &Password);
 
+	UFUNCTION()
+	void BindSocket();
+
+	FSocket* ServerSocket;
+
 };

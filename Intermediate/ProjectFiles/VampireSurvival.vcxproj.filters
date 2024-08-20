@@ -28,6 +28,12 @@
     <Filter Include="Source\VampireSurvival">
       <UniqueIdentifier>{A5DF2E74-C208-3B0B-B14A-22B02D4400D4}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\VampireGameInstanceSubsystem.cpp">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\VampireGameInstanceSubsystem.h">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClInclude>
     <None Include="..\..\Source\VampireSurvival\VampireSurvival.Build.cs">
       <Filter>Source\VampireSurvival</Filter>
     </None>
