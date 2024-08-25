@@ -1,20 +1,28 @@
 #include "Weapon.h"
 #include "GameFramework/Character.h"
+#include "Components/BoxComponent.h"
+#include "VampireSurvivalCharacter.h"
+#include "Net/UnrealNetwork.h"
+#include "bullet.h"
+#include "Engine/StaticMeshSocket.h"
 
 AWeapon::AWeapon()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMesh"));
-	RootComponent = WeaponMesh;
+	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>("Weapon");
+	WeaponMesh->SetCollisionProfileName("Weapon");
 	WeaponMesh->SetSimulatePhysics(true);
-	WeaponOwner = nullptr;
+	WeaponMesh->SetWorldScale3D(FVector(2.0, 2.0, 2.0));
+	SetRootComponent(WeaponMesh);
+
+	bReplicates = true;
 }
 
 void AWeapon::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 void AWeapon::Tick(float DeltaTime)
@@ -36,31 +44,13 @@ FWeaponStruct AWeapon::GetWeaponData()
 
 void AWeapon::DoEquipWeapon(ACharacter* OwingCharacter)
 {
-	UE_LOG(LogTemp, Error, TEXT("Equip Function Start"));
 
 	WeaponOwner = OwingCharacter;
 
-	if(WeaponOwner)
+	if (WeaponOwner)
 	{
-		WeaponOwner->bUseControllerRotationYaw = true;
-		FName WeaponName = NAME_None;
-
-		switch (WeaponData.Type)
-		{
-		case WeaponType::Pistol:
-			WeaponName = "Pistol";
-			break;
-		case WeaponType::Rifle:
-			WeaponName = "Rifle";
-			break;
-		case WeaponType::ShotGun:
-			WeaponName = "ShotGun";
-			break;
-		default:
-			break;
-		}
-
-		AttachToComponent(WeaponOwner->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, WeaponName);
+		WeaponMesh->SetSimulatePhysics(false);
+		AttachToComponent(WeaponOwner->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Pistol"));
 	}
 }
 
@@ -68,11 +58,37 @@ void AWeapon::DoUnEquipWeapon(ACharacter* OwingCharacter)
 {
 	DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 	WeaponMesh->SetSimulatePhysics(true);
-	WeaponOwner->bUseControllerRotationYaw = false;
 	WeaponOwner = nullptr;
 }
 
 void AWeapon::FireWeapon()
 {
+	if(HasAuthority())
+	{
+
+	}
+	else
+	{
+		FireWeapon_Server();
+	}
 }
 
+void AWeapon::FireWeapon_Server_Implementation()
+{
+	if (HasAuthority())
+	{
+		ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(WeaponMesh->GetSocketLocation(FName("Muzzle")),
+			WeaponMesh->GetSocketRotation(FName("Muzzle")));
+
+		if (Bullet && WeaponOwner)
+		{
+			Bullet->SetOwner(WeaponOwner->GetController());
+			UE_LOG(LogTemp, Error, TEXT("Buller SetOwner : %s"), *WeaponOwner->GetController()->GetName());
+		}
+	}
+}
+
+void AWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+}

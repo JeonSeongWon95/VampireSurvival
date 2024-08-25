@@ -104,7 +104,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AVampi
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::NewProp_NewWeapon,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Client_PressedPickUpWeaponKey", nullptr, nullptr, Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::PropPointers), sizeof(VampireSurvivalCharacter_eventClient_PressedPickUpWeaponKey_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x01020CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Client_PressedPickUpWeaponKey", nullptr, nullptr, Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::PropPointers), sizeof(VampireSurvivalCharacter_eventClient_PressedPickUpWeaponKey_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey_Statics::Function_MetaDataParams) };
 static_assert(sizeof(VampireSurvivalCharacter_eventClient_PressedPickUpWeaponKey_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey()
 {
@@ -125,6 +125,35 @@ DEFINE_FUNCTION(AVampireSurvivalCharacter::execClient_PressedPickUpWeaponKey)
 }
 // End Class AVampireSurvivalCharacter Function Client_PressedPickUpWeaponKey
 
+// Begin Class AVampireSurvivalCharacter Function ClientRequestFireFalse
+struct Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "ClientRequestFireFalse", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AVampireSurvivalCharacter::execClientRequestFireFalse)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ClientRequestFireFalse();
+	P_NATIVE_END;
+}
+// End Class AVampireSurvivalCharacter Function ClientRequestFireFalse
+
 // Begin Class AVampireSurvivalCharacter Function FindNearWeapon
 struct Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon_Statics
 {
@@ -134,7 +163,13 @@ struct Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//UFUNCTION()\n//void WeaponNotfire(const FInputActionValue& Value);\n" },
+#endif
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "UFUNCTION()\nvoid WeaponNotfire(const FInputActionValue& Value);" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
@@ -292,6 +327,40 @@ DEFINE_FUNCTION(AVampireSurvivalCharacter::execPlayerIsRun)
 }
 // End Class AVampireSurvivalCharacter Function PlayerIsRun
 
+// Begin Class AVampireSurvivalCharacter Function Server_ChangeFireFalse
+static FName NAME_AVampireSurvivalCharacter_Server_ChangeFireFalse = FName(TEXT("Server_ChangeFireFalse"));
+void AVampireSurvivalCharacter::Server_ChangeFireFalse()
+{
+	ProcessEvent(FindFunctionChecked(NAME_AVampireSurvivalCharacter_Server_ChangeFireFalse),NULL);
+}
+struct Z_Construct_UFunction_AVampireSurvivalCharacter_Server_ChangeFireFalse_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Server_ChangeFireFalse_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Server_ChangeFireFalse", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Server_ChangeFireFalse_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Server_ChangeFireFalse_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_Server_ChangeFireFalse()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_Server_ChangeFireFalse_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AVampireSurvivalCharacter::execServer_ChangeFireFalse)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Server_ChangeFireFalse_Implementation();
+	P_NATIVE_END;
+}
+// End Class AVampireSurvivalCharacter Function Server_ChangeFireFalse
+
 // Begin Class AVampireSurvivalCharacter Function Server_PressedPickUpWeaponKey
 static FName NAME_AVampireSurvivalCharacter_Server_PressedPickUpWeaponKey = FName(TEXT("Server_PressedPickUpWeaponKey"));
 void AVampireSurvivalCharacter::Server_PressedPickUpWeaponKey()
@@ -326,17 +395,79 @@ DEFINE_FUNCTION(AVampireSurvivalCharacter::execServer_PressedPickUpWeaponKey)
 }
 // End Class AVampireSurvivalCharacter Function Server_PressedPickUpWeaponKey
 
-// Begin Class AVampireSurvivalCharacter Function Server_RequestFire
-struct VampireSurvivalCharacter_eventServer_RequestFire_Parms
+// Begin Class AVampireSurvivalCharacter Function Server_RequestAimMode
+static FName NAME_AVampireSurvivalCharacter_Server_RequestAimMode = FName(TEXT("Server_RequestAimMode"));
+void AVampireSurvivalCharacter::Server_RequestAimMode()
 {
-	bool Newbool;
+	ProcessEvent(FindFunctionChecked(NAME_AVampireSurvivalCharacter_Server_RequestAimMode),NULL);
+}
+struct Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimMode_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-static FName NAME_AVampireSurvivalCharacter_Server_RequestFire = FName(TEXT("Server_RequestFire"));
-void AVampireSurvivalCharacter::Server_RequestFire(bool Newbool)
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimMode_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Server_RequestAimMode", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimMode_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimMode_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimMode()
 {
-	VampireSurvivalCharacter_eventServer_RequestFire_Parms Parms;
-	Parms.Newbool=Newbool ? true : false;
-	ProcessEvent(FindFunctionChecked(NAME_AVampireSurvivalCharacter_Server_RequestFire),&Parms);
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimMode_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AVampireSurvivalCharacter::execServer_RequestAimMode)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Server_RequestAimMode_Implementation();
+	P_NATIVE_END;
+}
+// End Class AVampireSurvivalCharacter Function Server_RequestAimMode
+
+// Begin Class AVampireSurvivalCharacter Function Server_RequestAimModeFasle
+static FName NAME_AVampireSurvivalCharacter_Server_RequestAimModeFasle = FName(TEXT("Server_RequestAimModeFasle"));
+void AVampireSurvivalCharacter::Server_RequestAimModeFasle()
+{
+	ProcessEvent(FindFunctionChecked(NAME_AVampireSurvivalCharacter_Server_RequestAimModeFasle),NULL);
+}
+struct Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimModeFasle_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimModeFasle_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Server_RequestAimModeFasle", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimModeFasle_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimModeFasle_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimModeFasle()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimModeFasle_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AVampireSurvivalCharacter::execServer_RequestAimModeFasle)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Server_RequestAimModeFasle_Implementation();
+	P_NATIVE_END;
+}
+// End Class AVampireSurvivalCharacter Function Server_RequestAimModeFasle
+
+// Begin Class AVampireSurvivalCharacter Function Server_RequestFire
+static FName NAME_AVampireSurvivalCharacter_Server_RequestFire = FName(TEXT("Server_RequestFire"));
+void AVampireSurvivalCharacter::Server_RequestFire()
+{
+	ProcessEvent(FindFunctionChecked(NAME_AVampireSurvivalCharacter_Server_RequestFire),NULL);
 }
 struct Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics
 {
@@ -345,22 +476,9 @@ struct Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Static
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
 	};
 #endif // WITH_METADATA
-	static void NewProp_Newbool_SetBit(void* Obj);
-	static const UECodeGen_Private::FBoolPropertyParams NewProp_Newbool;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-void Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::NewProp_Newbool_SetBit(void* Obj)
-{
-	((VampireSurvivalCharacter_eventServer_RequestFire_Parms*)Obj)->Newbool = 1;
-}
-const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::NewProp_Newbool = { "Newbool", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(VampireSurvivalCharacter_eventServer_RequestFire_Parms), &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::NewProp_Newbool_SetBit, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::NewProp_Newbool,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Server_RequestFire", nullptr, nullptr, Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::PropPointers), sizeof(VampireSurvivalCharacter_eventServer_RequestFire_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::Function_MetaDataParams) };
-static_assert(sizeof(VampireSurvivalCharacter_eventServer_RequestFire_Parms) < MAX_uint16);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "Server_RequestFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -372,10 +490,9 @@ UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire()
 }
 DEFINE_FUNCTION(AVampireSurvivalCharacter::execServer_RequestFire)
 {
-	P_GET_UBOOL(Z_Param_Newbool);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->Server_RequestFire_Implementation(Z_Param_Newbool);
+	P_THIS->Server_RequestFire_Implementation();
 	P_NATIVE_END;
 }
 // End Class AVampireSurvivalCharacter Function Server_RequestFire
@@ -479,80 +596,6 @@ DEFINE_FUNCTION(AVampireSurvivalCharacter::execWeaponfire)
 }
 // End Class AVampireSurvivalCharacter Function Weaponfire
 
-// Begin Class AVampireSurvivalCharacter Function WeaponNotfire
-struct Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics
-{
-	struct VampireSurvivalCharacter_eventWeaponNotfire_Parms
-	{
-		FInputActionValue Value;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Value_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FStructPropertyParams NewProp_Value;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::NewProp_Value = { "Value", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(VampireSurvivalCharacter_eventWeaponNotfire_Parms, Value), Z_Construct_UScriptStruct_FInputActionValue, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Value_MetaData), NewProp_Value_MetaData) }; // 494646648
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::NewProp_Value,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "WeaponNotfire", nullptr, nullptr, Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::PropPointers), sizeof(Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::VampireSurvivalCharacter_eventWeaponNotfire_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00420401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::VampireSurvivalCharacter_eventWeaponNotfire_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(AVampireSurvivalCharacter::execWeaponNotfire)
-{
-	P_GET_STRUCT_REF(FInputActionValue,Z_Param_Out_Value);
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->WeaponNotfire(Z_Param_Out_Value);
-	P_NATIVE_END;
-}
-// End Class AVampireSurvivalCharacter Function WeaponNotfire
-
-// Begin Class AVampireSurvivalCharacter Function ZoominMode
-struct Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "ZoominMode", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(AVampireSurvivalCharacter::execZoominMode)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->ZoominMode();
-	P_NATIVE_END;
-}
-// End Class AVampireSurvivalCharacter Function ZoominMode
-
 // Begin Class AVampireSurvivalCharacter
 void AVampireSurvivalCharacter::StaticRegisterNativesAVampireSurvivalCharacter()
 {
@@ -560,17 +603,19 @@ void AVampireSurvivalCharacter::StaticRegisterNativesAVampireSurvivalCharacter()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "ChanageMovementSpeed", &AVampireSurvivalCharacter::execChanageMovementSpeed },
 		{ "Client_PressedPickUpWeaponKey", &AVampireSurvivalCharacter::execClient_PressedPickUpWeaponKey },
+		{ "ClientRequestFireFalse", &AVampireSurvivalCharacter::execClientRequestFireFalse },
 		{ "FindNearWeapon", &AVampireSurvivalCharacter::execFindNearWeapon },
 		{ "OnReq_Fire", &AVampireSurvivalCharacter::execOnReq_Fire },
 		{ "OnReq_Reload", &AVampireSurvivalCharacter::execOnReq_Reload },
 		{ "PlayerIsNotRun", &AVampireSurvivalCharacter::execPlayerIsNotRun },
 		{ "PlayerIsRun", &AVampireSurvivalCharacter::execPlayerIsRun },
+		{ "Server_ChangeFireFalse", &AVampireSurvivalCharacter::execServer_ChangeFireFalse },
 		{ "Server_PressedPickUpWeaponKey", &AVampireSurvivalCharacter::execServer_PressedPickUpWeaponKey },
+		{ "Server_RequestAimMode", &AVampireSurvivalCharacter::execServer_RequestAimMode },
+		{ "Server_RequestAimModeFasle", &AVampireSurvivalCharacter::execServer_RequestAimModeFasle },
 		{ "Server_RequestFire", &AVampireSurvivalCharacter::execServer_RequestFire },
 		{ "Server_RequestReload", &AVampireSurvivalCharacter::execServer_RequestReload },
 		{ "Weaponfire", &AVampireSurvivalCharacter::execWeaponfire },
-		{ "WeaponNotfire", &AVampireSurvivalCharacter::execWeaponNotfire },
-		{ "ZoominMode", &AVampireSurvivalCharacter::execZoominMode },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -642,6 +687,9 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsReload_MetaData[] = {
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsOnAim_MetaData[] = {
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Camera;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraBoom;
@@ -659,22 +707,26 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsfire;
 	static void NewProp_bIsReload_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsReload;
+	static void NewProp_bIsOnAim_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsOnAim;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_ChanageMovementSpeed, "ChanageMovementSpeed" }, // 2451645743
-		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey, "Client_PressedPickUpWeaponKey" }, // 3964831458
-		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon, "FindNearWeapon" }, // 200955537
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey, "Client_PressedPickUpWeaponKey" }, // 4140316836
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse, "ClientRequestFireFalse" }, // 2990627071
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon, "FindNearWeapon" }, // 1059354171
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire, "OnReq_Fire" }, // 3592403789
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Reload, "OnReq_Reload" }, // 4265836618
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_PlayerIsNotRun, "PlayerIsNotRun" }, // 1430601094
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_PlayerIsRun, "PlayerIsRun" }, // 3508734660
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_ChangeFireFalse, "Server_ChangeFireFalse" }, // 959594593
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_PressedPickUpWeaponKey, "Server_PressedPickUpWeaponKey" }, // 1776604652
-		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire, "Server_RequestFire" }, // 3607426484
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimMode, "Server_RequestAimMode" }, // 2108775026
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestAimModeFasle, "Server_RequestAimModeFasle" }, // 3881666089
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestFire, "Server_RequestFire" }, // 3570723606
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Server_RequestReload, "Server_RequestReload" }, // 2780591193
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Weaponfire, "Weaponfire" }, // 4028082610
-		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_WeaponNotfire, "WeaponNotfire" }, // 1427117188
-		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_ZoominMode, "ZoominMode" }, // 1328208230
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -704,6 +756,11 @@ void Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsReload_Set
 	((AVampireSurvivalCharacter*)Obj)->bIsReload = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsReload = { "bIsReload", "OnReq_Reload", (EPropertyFlags)0x0010000100000020, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AVampireSurvivalCharacter), &Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsReload_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsReload_MetaData), NewProp_bIsReload_MetaData) };
+void Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsOnAim_SetBit(void* Obj)
+{
+	((AVampireSurvivalCharacter*)Obj)->bIsOnAim = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsOnAim = { "bIsOnAim", nullptr, (EPropertyFlags)0x0010000000000020, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AVampireSurvivalCharacter), &Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsOnAim_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsOnAim_MetaData), NewProp_bIsOnAim_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AVampireSurvivalCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_Camera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_CameraBoom,
@@ -719,6 +776,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AVampireS
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_VSCharacterMovement,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsReload,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsOnAim,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AVampireSurvivalCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AVampireSurvivalCharacter_Statics::DependentSingletons[])() = {
@@ -757,9 +815,11 @@ void AVampireSurvivalCharacter::ValidateGeneratedRepEnums(const TArray<struct FR
 {
 	static const FName Name_bIsfire(TEXT("bIsfire"));
 	static const FName Name_bIsReload(TEXT("bIsReload"));
+	static const FName Name_bIsOnAim(TEXT("bIsOnAim"));
 	const bool bIsValid = true
 		&& Name_bIsfire == ClassReps[(int32)ENetFields_Private::bIsfire].Property->GetFName()
-		&& Name_bIsReload == ClassReps[(int32)ENetFields_Private::bIsReload].Property->GetFName();
+		&& Name_bIsReload == ClassReps[(int32)ENetFields_Private::bIsReload].Property->GetFName()
+		&& Name_bIsOnAim == ClassReps[(int32)ENetFields_Private::bIsOnAim].Property->GetFName();
 	checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in AVampireSurvivalCharacter"));
 }
 DEFINE_VTABLE_PTR_HELPER_CTOR(AVampireSurvivalCharacter);
@@ -767,14 +827,14 @@ AVampireSurvivalCharacter::~AVampireSurvivalCharacter() {}
 // End Class AVampireSurvivalCharacter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
+struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AVampireSurvivalCharacter, AVampireSurvivalCharacter::StaticClass, TEXT("AVampireSurvivalCharacter"), &Z_Registration_Info_UClass_AVampireSurvivalCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalCharacter), 751240849U) },
+		{ Z_Construct_UClass_AVampireSurvivalCharacter, AVampireSurvivalCharacter::StaticClass, TEXT("AVampireSurvivalCharacter"), &Z_Registration_Info_UClass_AVampireSurvivalCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalCharacter), 2263378079U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_185404442(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_950142941(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

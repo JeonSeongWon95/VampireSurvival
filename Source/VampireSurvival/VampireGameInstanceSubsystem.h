@@ -13,5 +13,16 @@ UCLASS()
 class VAMPIRESURVIVAL_API UVampireGameInstanceSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
+
+public:
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+
+	UFUNCTION()
+	void ConnectedLoginServer();
+
+	class FSocket* ServerSocket;
+
+	UFUNCTION()
+	void SendUserData(FString& ID, FString& Password);
 	
 };

@@ -62,9 +62,6 @@ protected:
 
 public:
 
-	UFUNCTION()
-	void ZoominMode();
-
 	void EnhancedMove(const FInputActionValue& Value);
 
 	void PressedRun(const FInputActionValue& Value);
@@ -73,7 +70,9 @@ public:
 
 	void PressedPickUpKey(const FInputActionValue& Value);
 
-	void PressedSpawnRifle(const FInputActionValue& Value);
+	void PressedAim(const FInputActionValue& Value);
+
+	void ReleaseAim(const FInputActionValue& Value);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "EquipWeapon")
 	TObjectPtr<class AWeapon> EquipWeapon;
@@ -108,13 +107,13 @@ public:
 	void OnReq_Reload();
 
 	UFUNCTION(Server, Reliable)
-	void Server_RequestFire(bool Newbool);
+	void Server_RequestFire();
 
 	UFUNCTION(Server, Reliable)
 	void Server_RequestReload(bool Newbool);
 
-	UFUNCTION()
-	void WeaponNotfire(const FInputActionValue& Value);
+	//UFUNCTION()
+	//void WeaponNotfire(const FInputActionValue& Value);
 
 	UFUNCTION()
 	AActor* FindNearWeapon();
@@ -122,6 +121,23 @@ public:
 	UFUNCTION(Server, Reliable)
 	void Server_PressedPickUpWeaponKey();
 
-	UFUNCTION(Client, Reliable)
+	UFUNCTION(NetMulticast, Reliable)
 	void Client_PressedPickUpWeaponKey(AActor* NewWeapon);
+
+	UFUNCTION(Server, Reliable)
+	void Server_ChangeFireFalse();
+
+	UPROPERTY(Replicated)
+	bool bIsOnAim;
+
+	UFUNCTION(Server, Reliable)
+	void Server_RequestAimMode();
+
+	UFUNCTION(Server, Reliable)
+	void Server_RequestAimModeFasle();
+
+	UFUNCTION()
+	void ClientRequestFireFalse();
+
+	bool operator==(const AVampireSurvivalCharacter& other) const = default;
 };

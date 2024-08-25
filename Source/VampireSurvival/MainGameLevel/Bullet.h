@@ -19,30 +19,27 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
-	UPROPERTY()
-	TObjectPtr<class UStaticMeshComponent> StaticMesh;
-
-	UPROPERTY()
-	TObjectPtr<class UBoxComponent> BoxCollision;
 
 	UPROPERTY()
 	float Speed;
 
-	UPROPERTY()
-	float SpreadAngle;
-
 public:	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<class UStaticMeshComponent> StaticMesh;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Bullet", meta = (ExposOnSpawn = true))
-	FWeaponStruct WeaponType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<class UProjectileMovementComponent> Movement;
 
-	UPROPERTY()
-	uint8 bIsRight;
+	UFUNCTION()
+	void HitBullet(UPrimitiveComponent* HitComponent, AActor* OtherActor,
+		UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
-	UPROPERTY()
-	uint8 bIsLeft;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+	UFUNCTION(Server, Reliable)
+	void HitBullet_Server(AActor* OtherActor);
 };

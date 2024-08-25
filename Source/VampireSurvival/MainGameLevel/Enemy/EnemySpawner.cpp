@@ -3,12 +3,25 @@
 
 #include "EnemySpawner.h"
 #include "Enemy.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 AEnemySpawner::AEnemySpawner()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Scene"));
+	SetRootComponent(SceneComponent);
+
+	static ConstructorHelpers::FClassFinder<AEnemy> EnemyClass(TEXT("/Script/CoreUObject.Class'/Script/VampireSurvival.Enemy'"));
+
+	if(EnemyClass.Succeeded())
+	{
+		Actor = EnemyClass.Class;
+	}
+
+	bReplicates = true;
 
 }
 
@@ -27,9 +40,18 @@ void AEnemySpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (HasAuthority())
+	{
+		SpawnEnemy(DeltaTime);
+	}
+
+}
+
+void AEnemySpawner::SpawnEnemy_Implementation(float DeltaTime)
+{
 	SpawnTime += DeltaTime;
 
-	if(SpawnTime >= SpawnTick)
+	if (SpawnTime >= SpawnTick)
 	{
 		if (Actor != nullptr)
 		{
@@ -37,5 +59,10 @@ void AEnemySpawner::Tick(float DeltaTime)
 			SpawnTime = 0;
 		}
 	}
+}
+
+void AEnemySpawner::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 }
 

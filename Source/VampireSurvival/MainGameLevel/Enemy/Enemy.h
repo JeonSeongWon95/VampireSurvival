@@ -19,11 +19,41 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void DestroyActor();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+	UFUNCTION()
+	UBehaviorTree* GetBehaviorTree();
+
+	UFUNCTION()
+	void HitBullet(int32 Damage);
+
+	UFUNCTION(Server, Reliable)
+	void Server_RequestAddDamage(int32 Damage);
+
+	UFUNCTION()
+	void OnReq_UpdateHP();
+
+	UPROPERTY(ReplicatedUsing = OnReq_UpdateHP)
+	int32 Health;
+
+	UPROPERTY()
+	TObjectPtr<class UBehaviorTree> Tree;
+
+	UFUNCTION()
+	void DoDeath();
+
+	UFUNCTION(Server, Reliable)
+	void Server_DoDeath();
+
+	FTimerHandle EnemyTimerHandle;
 
 };

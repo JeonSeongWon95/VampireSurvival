@@ -16,7 +16,7 @@
 
 AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 {
-
+	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 	PrimaryActorTick.bCanEverTick = true;
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
@@ -57,11 +57,15 @@ AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 	IA_EnhancedMove = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_EnhancedMove.IA_EnhancedMove'"));
 	IA_Run = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_Run.IA_Run'"));
 	IA_Fire = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_Fire.IA_Fire'"));
+	IA_PickUpWeapon = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_PickUpWeapon.IA_PickUpWeapon'"));
+	IA_OnAim = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_OnAim.IA_OnAim'"));
 
 	FireRate = 0.0;
 	EquipWeapon = nullptr;
+	bReplicates = true;
 	bIsfire = false;
 	bIsReload = false;
+	bIsOnAim = false;
 
 }
 
@@ -104,20 +108,11 @@ void AVampireSurvivalCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 		EIC->BindAction(IA_Run, ETriggerEvent::Completed, this, &AVampireSurvivalCharacter::ReleasedRun);
 		EIC->BindAction(IA_PickUpWeapon, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedPickUpKey);
 		EIC->BindAction(IA_Fire, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::Weaponfire);
-		EIC->BindAction(IA_Fire, ETriggerEvent::Completed, this, &AVampireSurvivalCharacter::WeaponNotfire);
-		UE_LOG(LogTemp, Error, TEXT("EIC Cast Succed"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("EIC Cast fail"));
+		EIC->BindAction(IA_OnAim, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedAim);
+		EIC->BindAction(IA_OnAim, ETriggerEvent::Completed, this, &AVampireSurvivalCharacter::ReleaseAim);
 	}
 
 }
-
-void AVampireSurvivalCharacter::ZoominMode()
-{
-}
-
 
 void AVampireSurvivalCharacter::EnhancedMove(const FInputActionValue& Value)
 {
@@ -148,32 +143,45 @@ void AVampireSurvivalCharacter::ReleasedRun(const FInputActionValue& Value)
 
 void AVampireSurvivalCharacter::PressedPickUpKey(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Error, TEXT("Player Pressed F Key!!"));
 	Server_PressedPickUpWeaponKey();
 }
 
-void AVampireSurvivalCharacter::PressedSpawnRifle(const FInputActionValue& Value)
+void AVampireSurvivalCharacter::PressedAim(const FInputActionValue& Value)
 {
+	Server_RequestAimMode();
+}
+
+void AVampireSurvivalCharacter::ReleaseAim(const FInputActionValue& Value)
+{
+	Server_RequestAimModeFasle();
 }
 
 void AVampireSurvivalCharacter::Weaponfire(const FInputActionValue& Value)
 {
 	if (EquipWeapon != nullptr)
 	{
-		Server_RequestFire(true);
+		Server_RequestFire();
 	}
 }
 
-void AVampireSurvivalCharacter::WeaponNotfire(const FInputActionValue& Value)
-{
-	Server_RequestFire(false);
-}
+//void AVampireSurvivalCharacter::WeaponNotfire(const FInputActionValue& Value)
+//{
+//	if (EquipWeapon != nullptr)
+//	{
+//		UE_LOG(LogTemp, Error, TEXT("Fire Finished"));
+//		Server_RequestFire();
+//	}
+//}
 
 AActor* AVampireSurvivalCharacter::FindNearWeapon()
 {
 	TArray<AActor*> Actors;
 	GetCapsuleComponent()->GetOverlappingActors(Actors, AWeapon::StaticClass());
 
+	if (Actors.Num() <= 0)
+	{
+
+	}
 	double Distance = 999999.0f;
 	AActor* NearActor = nullptr;
 
@@ -198,18 +206,38 @@ AActor* AVampireSurvivalCharacter::FindNearWeapon()
 	return NearActor;
 }
 
+void AVampireSurvivalCharacter::ClientRequestFireFalse()
+{
+	if (HasAuthority())
+	{
+		Server_ChangeFireFalse();
+	}
+}
+
+void AVampireSurvivalCharacter::Server_RequestAimMode_Implementation()
+{
+	bIsOnAim = true;
+}
+
+void AVampireSurvivalCharacter::Server_RequestAimModeFasle_Implementation()
+{
+	bIsOnAim = false;
+}
+
+void AVampireSurvivalCharacter::Server_ChangeFireFalse_Implementation()
+{
+	bIsfire = false;
+}
+
 void AVampireSurvivalCharacter::Server_PressedPickUpWeaponKey_Implementation()
 {
-	UE_LOG(LogTemp, Error, TEXT("Server Function Start"));
+	AActor* NearWeapon = FindNearWeapon();
 
-	AActor* NearWeapon = nullptr;
-	NearWeapon = FindNearWeapon();
-
-	if(NearWeapon == nullptr)
+	if (false == IsValid(NearWeapon))
 	{
 		return;
 	}
-	if(EquipWeapon)
+	if (EquipWeapon != nullptr)
 	{
 		EquipWeapon->SetOwner(nullptr);
 	}
@@ -220,20 +248,22 @@ void AVampireSurvivalCharacter::Server_PressedPickUpWeaponKey_Implementation()
 
 void AVampireSurvivalCharacter::Client_PressedPickUpWeaponKey_Implementation(AActor* NewWeapon)
 {
-	UE_LOG(LogTemp, Error, TEXT("Client Function Start"));
+	AWeapon* NewEquipWeapon = Cast<AWeapon>(NewWeapon);
 
-	if(EquipWeapon != nullptr)
+	if (NewEquipWeapon)
 	{
-		AWeapon* NewEquipWeapon = Cast<AWeapon>(NewWeapon);
-
-		if(NewEquipWeapon)
+		if (EquipWeapon != nullptr)
 		{
+
 			EquipWeapon->DoUnEquipWeapon(this);
 			EquipWeapon = nullptr;
-			EquipWeapon = NewEquipWeapon;
-			EquipWeapon->DoEquipWeapon(this);
+
 		}
+
+		EquipWeapon = NewEquipWeapon;
+		EquipWeapon->DoEquipWeapon(this);
 	}
+
 }
 
 void AVampireSurvivalCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -242,6 +272,7 @@ void AVampireSurvivalCharacter::GetLifetimeReplicatedProps(TArray<FLifetimePrope
 
 	DOREPLIFETIME(AVampireSurvivalCharacter, bIsfire);
 	DOREPLIFETIME(AVampireSurvivalCharacter, bIsReload);
+	DOREPLIFETIME(AVampireSurvivalCharacter, bIsOnAim);
 }
 
 void AVampireSurvivalCharacter::ChanageMovementSpeed_Implementation(float Speed)
@@ -263,17 +294,11 @@ void AVampireSurvivalCharacter::OnReq_Fire()
 {
 	if (bIsfire)
 	{
-		FireRate += GetWorld()->GetDeltaSeconds();
-
-		if (FireRate >= 0.5f)
+		if(EquipWeapon != nullptr)
 		{
-			FVector Location = GetActorTransform().GetLocation();
-			FRotator Rotation = GetActorTransform().GetRotation().Rotator();
-			GetWorld()->SpawnActor<ABullet>(Location, Rotation);
-			FireRate = 0;
+			UAnimMontage* FireAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Pistol/MM_Pistol_Fire_Montage.MM_Pistol_Fire_Montage'"));
+			PlayAnimMontage(FireAnim);
 		}
-
-		bIsfire = false;
 	}
 }
 
@@ -281,12 +306,20 @@ void AVampireSurvivalCharacter::OnReq_Reload()
 {
 }
 
-void AVampireSurvivalCharacter::Server_RequestFire_Implementation(bool Newbool)
+void AVampireSurvivalCharacter::Server_RequestFire_Implementation()
 {
-	bIsfire = Newbool;
+	if (bIsOnAim && !bIsfire)
+	{
+		bIsfire = true;
+
+		if (HasAuthority())
+		{
+			OnReq_Fire();
+		}
+	}
 }
 
 void AVampireSurvivalCharacter::Server_RequestReload_Implementation(bool Newbool)
 {
-
+	
 }

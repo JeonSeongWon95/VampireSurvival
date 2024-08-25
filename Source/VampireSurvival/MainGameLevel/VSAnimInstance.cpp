@@ -15,6 +15,7 @@ void UVSAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		Speed = Player->GetCharacterMovement()->Velocity.Size2D();
 		bIsFire = Player->bIsfire;
 		bIsReload = Player->bIsReload;
+		bIsOnAim = Player->bIsOnAim;
 
 		EquipWeapon = Player->EquipWeapon;
 

@@ -21,7 +21,6 @@ protected:
 	UPROPERTY()
 	TObjectPtr<ACharacter> WeaponOwner;
 
-
 public:	
 	virtual void Tick(float DeltaTime) override;
 
@@ -32,13 +31,16 @@ public:
 	FWeaponStruct GetWeaponData();
 
 	UFUNCTION()
-	virtual void DoEquipWeapon(ACharacter* OwingCharacter);
+	void DoEquipWeapon(ACharacter* OwingCharacter);
 
 	UFUNCTION()
-	virtual void DoUnEquipWeapon(ACharacter* OwingCharacter);
+	void DoUnEquipWeapon(ACharacter* OwingCharacter);
 
 	UFUNCTION()
-	virtual void FireWeapon();
+	void FireWeapon();
+
+	UFUNCTION(Server, Reliable)
+	void FireWeapon_Server();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponData")
 	FWeaponStruct WeaponData;
@@ -46,4 +48,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "WeaponData")
 	TObjectPtr<class UStaticMeshComponent> WeaponMesh;
 
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
 };

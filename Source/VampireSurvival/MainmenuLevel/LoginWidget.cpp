@@ -5,6 +5,8 @@
 #include "Components/Button.h"
 #include "Components/EditableTextBox.h"
 #include "VampireSurvival/MainmenuLevel/MainMenuPlayerController.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "VampireSurvival/VampireGameInstance.h"
 
 void ULoginWidget::SendClientIDAndPassword()
 {
@@ -13,7 +15,11 @@ void ULoginWidget::SendClientIDAndPassword()
 
 	if(!PlayerID.IsEmpty() && !PlayerPassword.IsEmpty())
 	{
-		AMainMenuPlayerController* PlayerController = Cast<AMainMenuPlayerController>(GetWorld()->GetFirstPlayerController());
+		UVampireGameInstance* GameInstance = Cast<UVampireGameInstance>(GetGameInstance());
+		if(GameInstance)
+		{
+			GameInstance->SendMessageToServer(PlayerID, PlayerPassword);
+		}
 
 	}
 	else
@@ -24,7 +30,7 @@ void ULoginWidget::SendClientIDAndPassword()
 
 void ULoginWidget::ClickedQuitButton()
 {
-	
+	UKismetSystemLibrary::QuitGame(GetWorld(), nullptr, EQuitPreference::Quit, false);
 }
 
 void ULoginWidget::NativeConstruct()

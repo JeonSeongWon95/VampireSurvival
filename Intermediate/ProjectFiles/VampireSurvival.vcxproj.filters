@@ -28,6 +28,12 @@
     <Filter Include="Source\VampireSurvival">
       <UniqueIdentifier>{A5DF2E74-C208-3B0B-B14A-22B02D4400D4}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\VampireGameInstance.cpp">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\VampireGameInstance.h">
+      <Filter>Source\VampireSurvival</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\VampireGameInstanceSubsystem.cpp">
       <Filter>Source\VampireSurvival</Filter>
     </ClCompile>
@@ -50,6 +56,24 @@
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Bullet.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\FinishFireNotify.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\FinishFireNotify.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\FireAnimNotify.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\FireAnimNotify.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\TestActor.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\TestActor.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\VampireSurvivalCharacter.cpp">
@@ -88,6 +112,12 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Weapon.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\WeaponSpawner.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\WeaponSpawner.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\WeaponStruct.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
@@ -97,10 +127,22 @@
     <Filter Include="Source\VampireSurvival\MainGameLevel\Enemy">
       <UniqueIdentifier>{C82601E8-BA48-320B-AA53-C93AF897808F}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\BTTask_FindNearPlayer.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\BTTask_FindNearPlayer.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\Enemy.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyAnimInstance.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyAnimInstance.h">
       <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyBehaviorTree.cpp">
@@ -121,10 +163,22 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyController.h">
       <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyDeathNotify.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemyDeathNotify.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\UpdateTargetLocation.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\UpdateTargetLocation.h">
       <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClInclude>
     <Filter Include="Source\VampireSurvival\MainmenuLevel">

@@ -27,7 +27,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SpawnLocation")
 	FTransform MyTransform;
 
+	UPROPERTY()
+	TObjectPtr<USceneComponent> SceneComponent;
+
 public:	
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(Server, Reliable)
+	void SpawnEnemy(float DeltaTime);
+
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 };

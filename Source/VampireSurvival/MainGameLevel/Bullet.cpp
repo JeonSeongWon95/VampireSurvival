@@ -4,6 +4,9 @@
 #include "Bullet.h"
 #include "Components/BoxComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
+#include "Enemy/Enemy.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 ABullet::ABullet()
@@ -12,21 +15,21 @@ ABullet::ABullet()
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> SM_Bullet(TEXT("/Script/Engine.StaticMesh'/Game/Effects/Meshes/BulletShells/SM_rifleshell.SM_rifleshell'"));
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-	BoxCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-	BoxCollision->SetRelativeScale3D(FVector(0.5f, 0.5f, 0.5f));
-	RootComponent = BoxCollision;
+	Movement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Movement"));
 
-	StaticMesh->SetStaticMesh(SM_Bullet.Object);
-	StaticMesh->SetupAttachment(BoxCollision);
-	StaticMesh->SetSimulatePhysics(false);
-	StaticMesh->SetRelativeScale3D(FVector(10.0f, 10.0f, 10.0f));
-	StaticMesh->SetRelativeRotation(FRotator(0.0f, 90.0f, 90.0f));
+	if (SM_Bullet.Succeeded())
+	{
+		StaticMesh->SetStaticMesh(SM_Bullet.Object);
+	}
+	StaticMesh->SetRelativeScale3D(FVector(20.f, 20.f, 20.f));
+	StaticMesh->SetCollisionProfileName("Bullet");
+	SetRootComponent(StaticMesh);
+	Movement->ProjectileGravityScale = 0.0f;
 
-	Speed = 1000.0f;
-	SpreadAngle = 20.0f;
-	
-	bIsLeft = false;
-	bIsRight = false;
+	Speed = 8000.0f;
+	bReplicates = true;
+	SetLifeSpan(3.0f);
+	StaticMesh->OnComponentHit.AddDynamic(this, &ABullet::HitBullet);
 
 }
 
@@ -34,34 +37,7 @@ ABullet::ABullet()
 void ABullet::BeginPlay()
 {
 	Super::BeginPlay();
-
-	FVector ForwardVector = GetActorForwardVector();
-	FVector RightVector = GetActorRightVector();
-	FVector Direction;
-
-	if(bIsLeft)
-	{
-		Direction = ForwardVector + RightVector;
-	}
-	else if(bIsRight)
-	{
-		Direction = ForwardVector + RightVector;
-	}
-	else
-	{
-		Direction = ForwardVector;
-	}
-
-	Direction.Normalize();
-
-	 FVector BulletVelocity = Direction * Speed;
-
-
-	BoxCollision->SetSimulatePhysics(true);
-	BoxCollision->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	BoxCollision->BodyInstance.bEnableGravity = false;
-	BoxCollision->SetCollisionResponseToAllChannels(ECR_Ignore);
-	BoxCollision->SetPhysicsLinearVelocity(BulletVelocity);
+	Movement->Velocity = GetActorForwardVector() * Speed;
 
 }
 
@@ -71,5 +47,30 @@ void ABullet::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
+void ABullet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+}
+
+void ABullet::HitBullet_Server_Implementation(AActor* OtherActor)
+{
+	AEnemy* HitActor = Cast<AEnemy>(OtherActor);
+
+	if (HitActor)
+	{
+		HitActor->HitBullet(30);
+	}
+
+}
+
+void ABullet::HitBullet(UPrimitiveComponent* HitComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+
+	HitBullet_Server(OtherActor);
+}
+
+
 
 
