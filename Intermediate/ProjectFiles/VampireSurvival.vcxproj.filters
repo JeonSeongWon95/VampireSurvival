@@ -232,5 +232,11 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\MainMenuWidget.h">
       <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainmenuLevel\SignUpWidget.cpp">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\SignUpWidget.h">
+      <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

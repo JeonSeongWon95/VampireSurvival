@@ -10,7 +10,7 @@ void UVampireGameInstance::Init()
 
 	if(GetSubsystem<UVampireGameInstanceSubsystem>())
 	{
-		GetSubsystem<UVampireGameInstanceSubsystem>();
+		VampireSubSystem = GetSubsystem<UVampireGameInstanceSubsystem>();
 	}
 	else
 	{
@@ -18,7 +18,19 @@ void UVampireGameInstance::Init()
 	}
 }
 
-void UVampireGameInstance::SendMessageToServer(FString& ID, FString& Password)
+bool UVampireGameInstance::SendMessageToServer(FString& ID, FString& Password, int IDSize, int PassWordSize, int SendType)
 {
+	if(VampireSubSystem)
+	{
+		if(VampireSubSystem->SendUserData(ID, Password, IDSize, PassWordSize, SendType))
+		{
+			return true;
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("SubSystem Send User Data Fail"));
+		}
+	}
 	
+	return false;
 }

@@ -5,6 +5,8 @@
 #include "Sockets.h"
 #include "SocketSubsystem.h"
 #include "Interfaces/IPv4/IPv4Address.h"
+#include <string.h>
+
 
 void UVampireGameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
@@ -29,22 +31,66 @@ void UVampireGameInstanceSubsystem::ConnectedLoginServer()
 
 	if (ServerSocket->Connect(*ServerAddress))
 	{
-		char Message[1024] = "Hello Server! I'm Unreal Gamer";
-		UE_LOG(LogTemp, Error, TEXT("Server Connect Success!"));
-
-		int32 BytesSend = 0;
-		int32 MessageSize = strlen(Message);
-
-		ServerSocket->Send(reinterpret_cast<const uint8*>(Message), MessageSize, BytesSend);
-
+		UE_LOG(LogTemp, Error, TEXT("Server Connected"));
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Server Connect Fail!"));
+		UE_LOG(LogTemp, Error, TEXT("Server Connected Fail"));
 	}
-
 }
 
-void UVampireGameInstanceSubsystem::SendUserData(FString& ID, FString& Password)
+bool UVampireGameInstanceSubsystem::SendUserData(FString& ID, FString& Password, int IDSize, int PassWordSize, int SendType)
 {
+
+	if (!ServerSocket || !ServerSocket->GetConnectionState() == ESocketConnectionState::SCS_Connected)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Not connected to server"));
+		return false;
+	}
+
+	UE_LOG(LogTemp, Error, TEXT("Is Connect True"));
+
+	const char* CharID = TCHAR_TO_UTF8(*ID);
+	strncpy_s(Packet.UserID, CharID, IDSize);
+	Packet.UserID[sizeof(Packet.UserID) - 1] = '\0';
+
+	CharID = TCHAR_TO_UTF8(*Password);
+	strncpy_s(Packet.UserPassword, CharID, PassWordSize);
+	Packet.UserPassword[sizeof(Packet.UserPassword) - 1] = '\0';
+
+
+	int32 BytesSend = 0;
+	Packet.Type = SendType;
+
+	if (ServerSocket->Send(reinterpret_cast<const uint8*>(&Packet), sizeof(Packet), BytesSend))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Send to Server Socket"));
+
+		char Buffer[1024] = "";
+		int32 BytesRecv = 0;
+
+		if (ServerSocket->Recv(reinterpret_cast<uint8*>(&Buffer), sizeof(Buffer), BytesRecv))
+		{
+			UE_LOG(LogTemp, Error, TEXT("Recive to Server Socket"));
+
+			Buffer[BytesRecv] = '\0';
+
+			if (strcmp(Buffer, "OK") == 0)
+			{
+				UE_LOG(LogTemp, Error, TEXT("Data is Right"));
+				return true;
+			}
+			else if (strcmp(Buffer, "False") == 0)
+			{
+				UE_LOG(LogTemp, Error, TEXT("Data is Incorrect"));
+				return false;
+			}
+
+		}
+
+	}
+
+
+
+	return false;
 }

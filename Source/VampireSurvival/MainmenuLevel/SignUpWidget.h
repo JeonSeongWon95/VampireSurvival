@@ -4,25 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "LoginWidget.generated.h"
+#include "SignUpWidget.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
-class VAMPIRESURVIVAL_API ULoginWidget : public UUserWidget
+class VAMPIRESURVIVAL_API USignUpWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 public:
 	UPROPERTY(meta = (BindWidget))
-	TObjectPtr<class UButton> Button_Login;
+	TObjectPtr<class UButton> Button_SignUp;
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UButton> Button_Quit;
-
-	UPROPERTY(meta = (BindWidget))
-	TObjectPtr<class UButton> Button_SignUp;
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UEditableTextBox> IDBox;
@@ -31,14 +26,11 @@ public:
 	TObjectPtr<class UEditableTextBox> PasswordBox;
 
 	UFUNCTION()
-	void SendClientIDAndPassword();
-
-	UFUNCTION()
 	void ClickedQuitButton();
 
-	virtual void NativeConstruct() override;
-
 	UFUNCTION()
-	void ClikedSignUpButton();
+	void SendClientIDAndPassword();
 
+	virtual void NativeConstruct() override;
+	
 };

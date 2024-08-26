@@ -6,9 +6,18 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "VampireGameInstanceSubsystem.generated.h"
 
-/**
- * 
- */
+#pragma pack(push, 1)
+USTRUCT(BlueprintType)
+struct FPacket
+{
+	GENERATED_BODY()
+
+	int Type;
+	char UserID[10];
+	char UserPassword[10];
+};
+#pragma pack(pop)
+
 UCLASS()
 class VAMPIRESURVIVAL_API UVampireGameInstanceSubsystem : public UGameInstanceSubsystem
 {
@@ -23,6 +32,8 @@ public:
 	class FSocket* ServerSocket;
 
 	UFUNCTION()
-	void SendUserData(FString& ID, FString& Password);
+	bool SendUserData(FString& ID, FString& Password, int IDSize, int PassWordSize, int SendType);
+
+	FPacket Packet;
 	
 };

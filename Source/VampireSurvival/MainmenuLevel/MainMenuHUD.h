@@ -15,6 +15,9 @@ class VAMPIRESURVIVAL_API AMainMenuHUD : public AHUD
 public:
 	AMainMenuHUD();
 
+	UFUNCTION()
+	void ShowSignUpWidget();
+
 protected:
 	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "WidgetClass")
@@ -31,12 +34,18 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "WidgetClass")
 	TSubclassOf<class ULoginWidget> LoginWidgetClass;
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "WidgetClass")
+	TSubclassOf<class USignUpWidget> SignUpWidgetClass;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
 	TObjectPtr<class UJoinWidget> JoinWidget;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
 	TObjectPtr<class ULoginWidget> LoginWidget;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widget")
+	TObjectPtr<class USignUpWidget> SignUpWidget;
 
+	
 	
 };

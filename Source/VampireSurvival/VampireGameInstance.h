@@ -18,5 +18,8 @@ public:
 	virtual void Init() override;
 	
 	UFUNCTION()
-	void SendMessageToServer(FString& ID, FString& Password);
+	bool SendMessageToServer(FString& ID, FString& Password, int IDSize, int PassWordSize, int SendType);
+
+	UPROPERTY()
+	TObjectPtr<class UVampireGameInstanceSubsystem> VampireSubSystem;
 };
