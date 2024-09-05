@@ -28,7 +28,6 @@ AEnemy::AEnemy()
 	GetCharacterMovement()->MaxWalkSpeed = 500;
 	GetCharacterMovement()->SetIsReplicated(true);
 	bReplicates = true;
-
 	Health = 100;
 
 	static ConstructorHelpers::FObjectFinder<UBehaviorTree> CBT(TEXT("/Script/AIModule.BehaviorTree'/Game/SeongWon/BP/BT_Enemy.BT_Enemy'"));
@@ -67,7 +66,7 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void AEnemy::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
+	
 	DOREPLIFETIME(AEnemy, Health);
 }
 
@@ -108,8 +107,10 @@ void AEnemy::OnReq_UpdateHP()
 			PlayAnimMontage(HitAnim);
 		}
 	}
-	
-
+	else
+	{
+		DoDeath();
+	}
 }
 
 void AEnemy::DoDeath()
@@ -117,9 +118,21 @@ void AEnemy::DoDeath()
 	Server_DoDeath();
 }
 
+void AEnemy::CantMove()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 0;
+
+}
+
+void AEnemy::CanMove()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 500.0;
+}
+
 void AEnemy::Server_DoDeath_Implementation()
 {
 	//Destroy();
-	//GetWorld()->GetTimerManager().SetTimer(EnemyTimerHandle, this, &AEnemy::DestroyActor, 5.0f, false);
+	GetCharacterMovement()->MaxWalkSpeed = 0;
+	GetWorld()->GetTimerManager().SetTimer(EnemyTimerHandle, this, &AEnemy::DestroyActor, 3.0f, false);
 }
 

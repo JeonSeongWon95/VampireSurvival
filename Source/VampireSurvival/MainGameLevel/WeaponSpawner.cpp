@@ -30,7 +30,8 @@ void AWeaponSpawner::BeginPlay()
 
 	if(HasAuthority())
 	{
-		GetWorld()->SpawnActor<AWeapon>(WeaponClass, GetActorLocation(), GetActorRotation());
+		AWeapon* SpawnedWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponClass, GetActorLocation(), GetActorRotation());
+		SpawnedWeapon->SetOwner(this);
 	}
 	
 }

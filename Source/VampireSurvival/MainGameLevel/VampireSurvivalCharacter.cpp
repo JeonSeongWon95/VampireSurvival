@@ -242,7 +242,12 @@ void AVampireSurvivalCharacter::Server_PressedPickUpWeaponKey_Implementation()
 		EquipWeapon->SetOwner(nullptr);
 	}
 
-	NearWeapon->SetOwner(GetController());
+	if (HasAuthority())
+	{
+		UE_LOG(LogTemp, Error, TEXT("Weapon Owner Set"));
+		NearWeapon->SetOwner(GetController());
+	}
+
 	Client_PressedPickUpWeaponKey(NearWeapon);
 }
 
@@ -294,7 +299,7 @@ void AVampireSurvivalCharacter::OnReq_Fire()
 {
 	if (bIsfire)
 	{
-		if(EquipWeapon != nullptr)
+		if (EquipWeapon != nullptr)
 		{
 			UAnimMontage* FireAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Pistol/MM_Pistol_Fire_Montage.MM_Pistol_Fire_Montage'"));
 			PlayAnimMontage(FireAnim);
@@ -321,5 +326,5 @@ void AVampireSurvivalCharacter::Server_RequestFire_Implementation()
 
 void AVampireSurvivalCharacter::Server_RequestReload_Implementation(bool Newbool)
 {
-	
+
 }

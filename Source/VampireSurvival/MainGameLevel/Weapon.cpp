@@ -63,14 +63,7 @@ void AWeapon::DoUnEquipWeapon(ACharacter* OwingCharacter)
 
 void AWeapon::FireWeapon()
 {
-	if(HasAuthority())
-	{
-
-	}
-	else
-	{
-		FireWeapon_Server();
-	}
+	FireWeapon_Server();
 }
 
 void AWeapon::FireWeapon_Server_Implementation()
@@ -78,7 +71,7 @@ void AWeapon::FireWeapon_Server_Implementation()
 	if (HasAuthority())
 	{
 		ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(WeaponMesh->GetSocketLocation(FName("Muzzle")),
-			WeaponMesh->GetSocketRotation(FName("Muzzle")));
+		WeaponMesh->GetSocketRotation(FName("Muzzle")));
 
 		if (Bullet && WeaponOwner)
 		{

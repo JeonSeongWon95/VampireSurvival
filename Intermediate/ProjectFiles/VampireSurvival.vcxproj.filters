@@ -175,6 +175,18 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\EnemySpawner.h">
       <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\HitEndNotify.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\HitEndNotify.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\HitStartNotify.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\HitStartNotify.h">
+      <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Enemy\UpdateTargetLocation.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel\Enemy</Filter>
     </ClCompile>
@@ -238,5 +250,16 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\SignUpWidget.h">
       <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source\VampireSurvival\MainGameLevel\Input">
+      <UniqueIdentifier>{c0935a58-2362-4be6-aea8-ab03430a2314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\VampireSurvival\MainGameLevel\Inventory">
+      <UniqueIdentifier>{e365ff26-a310-4d4d-a791-aa5fc6df33ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\VampireSurvival\MainGameLevel\Shop">
+      <UniqueIdentifier>{3221d1a9-da0e-4818-ace1-fabda8b5bf28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

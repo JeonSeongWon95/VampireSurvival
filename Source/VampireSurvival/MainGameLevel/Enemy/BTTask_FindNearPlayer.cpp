@@ -4,21 +4,15 @@
 #include "GameFramework/PlayerState.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/Controller.h"
+#include "Kismet/GameplayStatics.h"
 
 UBTTask_FindNearPlayer::UBTTask_FindNearPlayer()
 {
     NodeName = "Find Nearest Player";
-    bHasExecuted = false;
 }
 
 EBTNodeResult::Type UBTTask_FindNearPlayer::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-    if (bHasExecuted)
-    {
-        return EBTNodeResult::Succeeded;
-    }
-
-    bHasExecuted = true;
 
     UBlackboardComponent* BlackboardComp = OwnerComp.GetBlackboardComponent();
     if (BlackboardComp)
@@ -41,9 +35,16 @@ AActor* UBTTask_FindNearPlayer::FindNearestPlayer(FVector Location)
     AActor* NearestPlayer = nullptr;
     double NearestDistance = TNumericLimits<double>::Max();
 
-    for (APlayerState* PlayerState : GetWorld()->GetGameState()->PlayerArray)
+    TArray<APlayerState*> PlayerArray = GetWorld()->GetGameState()->PlayerArray;
+    for (APlayerState* PlayerState : PlayerArray)
     {
+        UE_LOG(LogTemp, Warning, TEXT("%d"), PlayerArray.Num());
+
         AActor* PlayerPawn = PlayerState->GetOwningController()->GetPawn();
+
+        //UGameplayStatics::GetAllActorsOfClassWithTag(GetWorld(), )
+
+        UE_LOG(LogTemp, Warning, TEXT("%s"), *PlayerPawn->GetName());
         if (PlayerPawn)
         {
             FVector PlayerLocation = PlayerPawn->GetActorLocation();

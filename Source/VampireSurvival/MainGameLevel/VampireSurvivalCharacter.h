@@ -54,6 +54,9 @@ protected:
 	UPROPERTY(EditAnyWhere, BluePrintReadWrite, Category = "Input")
 	TObjectPtr<class UInputMappingContext> InputMappingContext;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input")
+	TObjectPtr<class UInputAction> IA_Reload;
+
 	UPROPERTY()
 	FTimerHandle CharacterTimer;
 
@@ -140,4 +143,6 @@ public:
 	void ClientRequestFireFalse();
 
 	bool operator==(const AVampireSurvivalCharacter& other) const = default;
+
+	
 };

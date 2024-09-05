@@ -17,6 +17,64 @@ VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AEnemy();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AEnemy_NoRegister();
 // End Cross Module References
 
+// Begin Class AEnemy Function CanMove
+struct Z_Construct_UFunction_AEnemy_CanMove_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_CanMove_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "CanMove", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_CanMove_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_CanMove_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AEnemy_CanMove()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_CanMove_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execCanMove)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CanMove();
+	P_NATIVE_END;
+}
+// End Class AEnemy Function CanMove
+
+// Begin Class AEnemy Function CantMove
+struct Z_Construct_UFunction_AEnemy_CantMove_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_CantMove_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "CantMove", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_CantMove_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_CantMove_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AEnemy_CantMove()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_CantMove_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execCantMove)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CantMove();
+	P_NATIVE_END;
+}
+// End Class AEnemy Function CantMove
+
 // Begin Class AEnemy Function DoDeath
 struct Z_Construct_UFunction_AEnemy_DoDeath_Statics
 {
@@ -246,6 +304,8 @@ void AEnemy::StaticRegisterNativesAEnemy()
 {
 	UClass* Class = AEnemy::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "CanMove", &AEnemy::execCanMove },
+		{ "CantMove", &AEnemy::execCantMove },
 		{ "DoDeath", &AEnemy::execDoDeath },
 		{ "GetBehaviorTree", &AEnemy::execGetBehaviorTree },
 		{ "HitBullet", &AEnemy::execHitBullet },
@@ -280,6 +340,8 @@ struct Z_Construct_UClass_AEnemy_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AEnemy_CanMove, "CanMove" }, // 4213564500
+		{ &Z_Construct_UFunction_AEnemy_CantMove, "CantMove" }, // 1958083902
 		{ &Z_Construct_UFunction_AEnemy_DoDeath, "DoDeath" }, // 1298180404
 		{ &Z_Construct_UFunction_AEnemy_GetBehaviorTree, "GetBehaviorTree" }, // 1353545247
 		{ &Z_Construct_UFunction_AEnemy_HitBullet, "HitBullet" }, // 2742965570
@@ -344,14 +406,14 @@ AEnemy::~AEnemy() {}
 // End Class AEnemy
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 1016991052U) },
+		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 1743738576U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_1176765879(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_672446506(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

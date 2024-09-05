@@ -56,4 +56,10 @@ public:
 
 	FTimerHandle EnemyTimerHandle;
 
+	UFUNCTION()
+	void CantMove();
+
+	UFUNCTION()
+	void CanMove();
+
 };
