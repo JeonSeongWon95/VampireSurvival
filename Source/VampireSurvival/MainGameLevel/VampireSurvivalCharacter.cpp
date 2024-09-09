@@ -13,6 +13,7 @@
 #include "VampireSurvival/MainGameLevel/VampireSurvivalPlayerState.h"
 #include "Net/UnrealNetwork.h"
 #include "Components/CapsuleComponent.h"
+#include "InventoryComponent.h"
 
 AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 {
@@ -24,6 +25,8 @@ AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(CameraBoom);
+
+	Inven = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inven"));
 
 	CameraBoom->TargetArmLength = 1000;
 	CameraBoom->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
@@ -59,6 +62,7 @@ AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 	IA_Fire = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_Fire.IA_Fire'"));
 	IA_PickUpWeapon = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_PickUpWeapon.IA_PickUpWeapon'"));
 	IA_OnAim = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_OnAim.IA_OnAim'"));
+	IA_OpenInventory = LoadObject<UInputAction>(nullptr, TEXT("/Script/EnhancedInput.InputAction'/Game/SeongWon/Input/IA_OpenInventory.IA_OpenInventory'"));
 
 	FireRate = 0.0;
 	EquipWeapon = nullptr;
@@ -66,6 +70,7 @@ AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 	bIsfire = false;
 	bIsReload = false;
 	bIsOnAim = false;
+	bIsOpen = 0;
 
 }
 
@@ -110,6 +115,7 @@ void AVampireSurvivalCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 		EIC->BindAction(IA_Fire, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::Weaponfire);
 		EIC->BindAction(IA_OnAim, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedAim);
 		EIC->BindAction(IA_OnAim, ETriggerEvent::Completed, this, &AVampireSurvivalCharacter::ReleaseAim);
+		EIC->BindAction(IA_OpenInventory, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedOpenInventory);
 	}
 
 }
@@ -154,6 +160,20 @@ void AVampireSurvivalCharacter::PressedAim(const FInputActionValue& Value)
 void AVampireSurvivalCharacter::ReleaseAim(const FInputActionValue& Value)
 {
 	Server_RequestAimModeFasle();
+}
+
+void AVampireSurvivalCharacter::PressedOpenInventory(const FInputActionValue& Value)
+{
+	if (bIsOpen == 0)
+	{
+		Inven->ShowInventory();
+		bIsOpen = 1;
+	}
+	else
+	{
+		Inven->CloseInventory();
+		bIsOpen = 0;
+	}
 }
 
 void AVampireSurvivalCharacter::Weaponfire(const FInputActionValue& Value)

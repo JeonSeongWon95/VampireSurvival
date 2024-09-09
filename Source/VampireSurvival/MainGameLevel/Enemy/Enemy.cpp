@@ -4,6 +4,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "../GoldActor.h"
 
 AEnemy::AEnemy()
 {
@@ -29,6 +30,7 @@ AEnemy::AEnemy()
 	GetCharacterMovement()->SetIsReplicated(true);
 	bReplicates = true;
 	Health = 100;
+	IsDead = false;
 
 	static ConstructorHelpers::FObjectFinder<UBehaviorTree> CBT(TEXT("/Script/AIModule.BehaviorTree'/Game/SeongWon/BP/BT_Enemy.BT_Enemy'"));
 	if(CBT.Succeeded())
@@ -109,7 +111,12 @@ void AEnemy::OnReq_UpdateHP()
 	}
 	else
 	{
-		DoDeath();
+		if (!IsDead)
+		{
+			IsDead = true;
+			DoDeath();
+		}
+
 	}
 }
 
@@ -131,7 +138,11 @@ void AEnemy::CanMove()
 
 void AEnemy::Server_DoDeath_Implementation()
 {
-	//Destroy();
+	if (HasAuthority())
+	{
+		GetWorld()->SpawnActor<AGoldActor>(GetActorLocation(), GetActorRotation());
+	}
+
 	GetCharacterMovement()->MaxWalkSpeed = 0;
 	GetWorld()->GetTimerManager().SetTimer(EnemyTimerHandle, this, &AEnemy::DestroyActor, 3.0f, false);
 }

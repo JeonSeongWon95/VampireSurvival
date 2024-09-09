@@ -17,13 +17,13 @@ void EmptyLinkFunctionForGeneratedCodeVampireSurvival_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xEFF3BFCD,
-				0x5321AECC,
+				0x2B384160,
+				0xD56FE5CA,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_VampireSurvival.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_VampireSurvival.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_VampireSurvival(Z_Construct_UPackage__Script_VampireSurvival, TEXT("/Script/VampireSurvival"), Z_Registration_Info_UPackage__Script_VampireSurvival, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xEFF3BFCD, 0x5321AECC));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_VampireSurvival(Z_Construct_UPackage__Script_VampireSurvival, TEXT("/Script/VampireSurvival"), Z_Registration_Info_UPackage__Script_VampireSurvival, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x2B384160, 0xD56FE5CA));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

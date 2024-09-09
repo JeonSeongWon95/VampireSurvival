@@ -25,6 +25,7 @@ UPackage* Z_Construct_UPackage__Script_VampireSurvival();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AVampireSurvivalCharacter();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AVampireSurvivalCharacter_NoRegister();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AWeapon_NoRegister();
+VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_UInventoryComponent_NoRegister();
 // End Cross Module References
 
 // Begin Class AVampireSurvivalCharacter Function ChanageMovementSpeed
@@ -163,13 +164,7 @@ struct Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//UFUNCTION()\n//void WeaponNotfire(const FInputActionValue& Value);\n" },
-#endif
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "UFUNCTION()\nvoid WeaponNotfire(const FInputActionValue& Value);" },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
@@ -642,6 +637,11 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Inven_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_EnhancedMove_MetaData[] = {
 		{ "Category", "Input" },
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
@@ -670,10 +670,17 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 		{ "Category", "Input" },
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IA_OpenInventory_MetaData[] = {
+		{ "Category", "Input" },
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CharacterTimer_MetaData[] = {
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_FireRate_MetaData[] = {
+		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsOpen_MetaData[] = {
 		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EquipWeapon_MetaData[] = {
@@ -697,6 +704,7 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Camera;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraBoom;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Inven;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_EnhancedMove;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Run;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_OnAim;
@@ -704,8 +712,10 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_PickUpWeapon;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InputMappingContext;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_Reload;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_IA_OpenInventory;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_CharacterTimer;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_FireRate;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_bIsOpen;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_EquipWeapon;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_VSCharacterMovement;
 	static void NewProp_bIsfire_SetBit(void* Obj);
@@ -720,7 +730,7 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_ChanageMovementSpeed, "ChanageMovementSpeed" }, // 2451645743
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey, "Client_PressedPickUpWeaponKey" }, // 4140316836
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse, "ClientRequestFireFalse" }, // 2990627071
-		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon, "FindNearWeapon" }, // 1059354171
+		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon, "FindNearWeapon" }, // 200955537
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire, "OnReq_Fire" }, // 3592403789
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Reload, "OnReq_Reload" }, // 4265836618
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_PlayerIsNotRun, "PlayerIsNotRun" }, // 1430601094
@@ -741,6 +751,7 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_Camera = { "Camera", nullptr, (EPropertyFlags)0x01240800000a001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, Camera), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Camera_MetaData), NewProp_Camera_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_CameraBoom = { "CameraBoom", nullptr, (EPropertyFlags)0x01240800000a001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, CameraBoom), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraBoom_MetaData), NewProp_CameraBoom_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_Inven = { "Inven", nullptr, (EPropertyFlags)0x01240800000a001d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, Inven), Z_Construct_UClass_UInventoryComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Inven_MetaData), NewProp_Inven_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_EnhancedMove = { "IA_EnhancedMove", nullptr, (EPropertyFlags)0x0124080000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, IA_EnhancedMove), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_EnhancedMove_MetaData), NewProp_IA_EnhancedMove_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_Run = { "IA_Run", nullptr, (EPropertyFlags)0x0124080000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, IA_Run), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Run_MetaData), NewProp_IA_Run_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_OnAim = { "IA_OnAim", nullptr, (EPropertyFlags)0x0124080000020005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, IA_OnAim), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_OnAim_MetaData), NewProp_IA_OnAim_MetaData) };
@@ -748,8 +759,10 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurviv
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_PickUpWeapon = { "IA_PickUpWeapon", nullptr, (EPropertyFlags)0x0124080000020005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, IA_PickUpWeapon), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_PickUpWeapon_MetaData), NewProp_IA_PickUpWeapon_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_InputMappingContext = { "InputMappingContext", nullptr, (EPropertyFlags)0x0124080000000005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, InputMappingContext), Z_Construct_UClass_UInputMappingContext_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InputMappingContext_MetaData), NewProp_InputMappingContext_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_Reload = { "IA_Reload", nullptr, (EPropertyFlags)0x0124080000020005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, IA_Reload), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_Reload_MetaData), NewProp_IA_Reload_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_OpenInventory = { "IA_OpenInventory", nullptr, (EPropertyFlags)0x0124080000020005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, IA_OpenInventory), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IA_OpenInventory_MetaData), NewProp_IA_OpenInventory_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_CharacterTimer = { "CharacterTimer", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, CharacterTimer), Z_Construct_UScriptStruct_FTimerHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CharacterTimer_MetaData), NewProp_CharacterTimer_MetaData) }; // 756291145
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_FireRate = { "FireRate", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, FireRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FireRate_MetaData), NewProp_FireRate_MetaData) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsOpen = { "bIsOpen", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, bIsOpen), nullptr, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsOpen_MetaData), NewProp_bIsOpen_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_EquipWeapon = { "EquipWeapon", nullptr, (EPropertyFlags)0x0114000000020005, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, EquipWeapon), Z_Construct_UClass_AWeapon_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EquipWeapon_MetaData), NewProp_EquipWeapon_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_VSCharacterMovement = { "VSCharacterMovement", nullptr, (EPropertyFlags)0x011400000008000d, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AVampireSurvivalCharacter, VSCharacterMovement), Z_Construct_UClass_UCharacterMovementComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_VSCharacterMovement_MetaData), NewProp_VSCharacterMovement_MetaData) };
 void Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire_SetBit(void* Obj)
@@ -770,6 +783,7 @@ const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AVampireSurvival
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AVampireSurvivalCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_Camera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_CameraBoom,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_Inven,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_EnhancedMove,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_Run,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_OnAim,
@@ -777,8 +791,10 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AVampireS
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_PickUpWeapon,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_InputMappingContext,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_Reload,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_IA_OpenInventory,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_CharacterTimer,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_FireRate,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsOpen,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_EquipWeapon,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_VSCharacterMovement,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire,
@@ -834,14 +850,14 @@ AVampireSurvivalCharacter::~AVampireSurvivalCharacter() {}
 // End Class AVampireSurvivalCharacter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
+struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AVampireSurvivalCharacter, AVampireSurvivalCharacter::StaticClass, TEXT("AVampireSurvivalCharacter"), &Z_Registration_Info_UClass_AVampireSurvivalCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalCharacter), 416122102U) },
+		{ Z_Construct_UClass_AVampireSurvivalCharacter, AVampireSurvivalCharacter::StaticClass, TEXT("AVampireSurvivalCharacter"), &Z_Registration_Info_UClass_AVampireSurvivalCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalCharacter), 3404873452U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_324891868(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_3568066274(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

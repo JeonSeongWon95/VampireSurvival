@@ -16,7 +16,11 @@ void UVampireGameInstanceSubsystem::Initialize(FSubsystemCollectionBase& Collect
 
 void UVampireGameInstanceSubsystem::ConnectedLoginServer()
 {
+	//언리얼에서 제공하는 SocketSubsystem.
+	//PLATFORM_SOCKETSUBSYSTEM : 다양한 플랫폼에서 사용가능한 소켓 API
 	ISocketSubsystem* SocketSystem = ISocketSubsystem::Get(PLATFORM_SOCKETSUBSYSTEM);
+	
+
 	ServerSocket = SocketSystem->CreateSocket(TEXT("Stream"), TEXT("ServerSocket"));
 
 	FString ServerIP = TEXT("127.0.0.1");

@@ -70,16 +70,40 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\FireAnimNotify.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\FItemStruct.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\FItemStruct.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\GoldActor.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\GoldActor.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryComponent.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryComponent.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryEntryWidget.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryEntryWidget.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryWidget.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryWidget.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\Item.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\Item.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\TestActor.cpp">

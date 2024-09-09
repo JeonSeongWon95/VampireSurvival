@@ -36,6 +36,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "CameraBoom")
 	TObjectPtr<class USpringArmComponent> CameraBoom;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
+	TObjectPtr<class UInventoryComponent> Inven;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
 	TObjectPtr<class UInputAction> IA_EnhancedMove;
 
@@ -57,11 +60,17 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input")
 	TObjectPtr<class UInputAction> IA_Reload;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input")
+	TObjectPtr<class UInputAction> IA_OpenInventory;
+
 	UPROPERTY()
 	FTimerHandle CharacterTimer;
 
 	UPROPERTY()
 	float FireRate;
+
+	UPROPERTY()
+	uint8 bIsOpen;
 
 public:
 
@@ -76,6 +85,8 @@ public:
 	void PressedAim(const FInputActionValue& Value);
 
 	void ReleaseAim(const FInputActionValue& Value);
+
+	void PressedOpenInventory(const FInputActionValue& Value);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "EquipWeapon")
 	TObjectPtr<class AWeapon> EquipWeapon;
@@ -114,9 +125,6 @@ public:
 
 	UFUNCTION(Server, Reliable)
 	void Server_RequestReload(bool Newbool);
-
-	//UFUNCTION()
-	//void WeaponNotfire(const FInputActionValue& Value);
 
 	UFUNCTION()
 	AActor* FindNearWeapon();

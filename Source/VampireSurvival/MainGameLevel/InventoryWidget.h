@@ -16,11 +16,30 @@ class VAMPIRESURVIVAL_API UInventoryWidget : public UUserWidget
 
 
 public:
-	UPROPERTY()
+	void NativeConstruct() override;
+
+	UFUNCTION()
+	void ClickedCloseButton();
+
+	UFUNCTION()
+	void ClearTileView();
+
+	UFUNCTION()
+	void AddTileView(UObject* NewItem);
+
+	UFUNCTION()
+	void SetGold(uint16 NewGold);
+
+
+private:
+	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UButton> CloseButton;
 
-	UPROPERTY()
+	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UTileView> ItemBox;
+
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<class UTextBlock> Gold;
 
 
 

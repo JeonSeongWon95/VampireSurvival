@@ -62,4 +62,7 @@ public:
 	UFUNCTION()
 	void CanMove();
 
+	UPROPERTY()
+	bool IsDead;
+
 };
