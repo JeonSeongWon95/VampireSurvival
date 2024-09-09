@@ -59,7 +59,7 @@ void ABullet::HitBullet_Server_Implementation(AActor* OtherActor)
 
 	if (HitActor)
 	{
-		HitActor->HitBullet(30);
+		HitActor->HitBullet(50);
 		Destroy();
 	}
 

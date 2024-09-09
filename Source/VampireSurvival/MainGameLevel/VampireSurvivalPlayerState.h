@@ -15,7 +15,11 @@ class VAMPIRESURVIVAL_API AVampireSurvivalPlayerState : public APlayerState
 	GENERATED_BODY()
 	
 public:
+	AVampireSurvivalPlayerState();
+	~AVampireSurvivalPlayerState();
 
 
 protected:
+	UPROPERTY()
+	uint8 Health;
 };

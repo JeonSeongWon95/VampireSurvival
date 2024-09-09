@@ -70,6 +70,18 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\FireAnimNotify.h">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryComponent.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryComponent.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryWidget.cpp">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\VampireSurvival\MainGameLevel\InventoryWidget.h">
+      <Filter>Source\VampireSurvival\MainGameLevel</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\VampireSurvival\MainGameLevel\TestActor.cpp">
       <Filter>Source\VampireSurvival\MainGameLevel</Filter>
     </ClCompile>
@@ -250,16 +262,5 @@
     <ClInclude Include="..\..\Source\VampireSurvival\MainmenuLevel\SignUpWidget.h">
       <Filter>Source\VampireSurvival\MainmenuLevel</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Source\VampireSurvival\MainGameLevel\Input">
-      <UniqueIdentifier>{c0935a58-2362-4be6-aea8-ab03430a2314}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\VampireSurvival\MainGameLevel\Inventory">
-      <UniqueIdentifier>{e365ff26-a310-4d4d-a791-aa5fc6df33ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\VampireSurvival\MainGameLevel\Shop">
-      <UniqueIdentifier>{3221d1a9-da0e-4818-ace1-fabda8b5bf28}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
