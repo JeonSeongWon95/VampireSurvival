@@ -5,13 +5,13 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Blueprint/IUserObjectListEntry.h"
-#include "InventoryEntryWidget.generated.h"
+#include "StoreEntryWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class VAMPIRESURVIVAL_API UInventoryEntryWidget : public UUserWidget, public IUserObjectListEntry
+class VAMPIRESURVIVAL_API UStoreEntryWidget : public UUserWidget, public IUserObjectListEntry
 {
 	GENERATED_BODY()
 
@@ -23,13 +23,16 @@ public:
 	TObjectPtr<class UTextBlock> ItemName;
 
 	UPROPERTY(meta = (BindWidget))
-	TObjectPtr<class UTextBlock> ItemCount;
+	TObjectPtr<class UTextBlock> ItemCost;
+
+	UPROPERTY(meta = (BindWidget))
+	TObjectPtr<class UButton> BuyButton;
 
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<class UImage> ItemImage;
 
 	UFUNCTION()
-	void SetData(uint16 Count, FString Name, UImage* Image);
+	void ClickedBuyButton();
 
-	
+
 };

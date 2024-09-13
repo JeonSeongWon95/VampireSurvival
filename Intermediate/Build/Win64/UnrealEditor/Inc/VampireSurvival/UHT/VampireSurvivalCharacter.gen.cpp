@@ -196,35 +196,6 @@ DEFINE_FUNCTION(AVampireSurvivalCharacter::execFindNearWeapon)
 }
 // End Class AVampireSurvivalCharacter Function FindNearWeapon
 
-// Begin Class AVampireSurvivalCharacter Function OnReq_Fire
-struct Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "MainGameLevel/VampireSurvivalCharacter.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AVampireSurvivalCharacter, nullptr, "OnReq_Fire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(AVampireSurvivalCharacter::execOnReq_Fire)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->OnReq_Fire();
-	P_NATIVE_END;
-}
-// End Class AVampireSurvivalCharacter Function OnReq_Fire
-
 // Begin Class AVampireSurvivalCharacter Function OnReq_Reload
 struct Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Reload_Statics
 {
@@ -600,7 +571,6 @@ void AVampireSurvivalCharacter::StaticRegisterNativesAVampireSurvivalCharacter()
 		{ "Client_PressedPickUpWeaponKey", &AVampireSurvivalCharacter::execClient_PressedPickUpWeaponKey },
 		{ "ClientRequestFireFalse", &AVampireSurvivalCharacter::execClientRequestFireFalse },
 		{ "FindNearWeapon", &AVampireSurvivalCharacter::execFindNearWeapon },
-		{ "OnReq_Fire", &AVampireSurvivalCharacter::execOnReq_Fire },
 		{ "OnReq_Reload", &AVampireSurvivalCharacter::execOnReq_Reload },
 		{ "PlayerIsNotRun", &AVampireSurvivalCharacter::execPlayerIsNotRun },
 		{ "PlayerIsRun", &AVampireSurvivalCharacter::execPlayerIsRun },
@@ -731,7 +701,6 @@ struct Z_Construct_UClass_AVampireSurvivalCharacter_Statics
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_Client_PressedPickUpWeaponKey, "Client_PressedPickUpWeaponKey" }, // 4140316836
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_ClientRequestFireFalse, "ClientRequestFireFalse" }, // 2990627071
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_FindNearWeapon, "FindNearWeapon" }, // 200955537
-		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Fire, "OnReq_Fire" }, // 3592403789
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_OnReq_Reload, "OnReq_Reload" }, // 4265836618
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_PlayerIsNotRun, "PlayerIsNotRun" }, // 1430601094
 		{ &Z_Construct_UFunction_AVampireSurvivalCharacter_PlayerIsRun, "PlayerIsRun" }, // 3508734660
@@ -769,7 +738,7 @@ void Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire_SetBi
 {
 	((AVampireSurvivalCharacter*)Obj)->bIsfire = 1;
 }
-const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire = { "bIsfire", "OnReq_Fire", (EPropertyFlags)0x0010000100000020, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AVampireSurvivalCharacter), &Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsfire_MetaData), NewProp_bIsfire_MetaData) };
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire = { "bIsfire", nullptr, (EPropertyFlags)0x0010000000000020, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AVampireSurvivalCharacter), &Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsfire_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsfire_MetaData), NewProp_bIsfire_MetaData) };
 void Z_Construct_UClass_AVampireSurvivalCharacter_Statics::NewProp_bIsReload_SetBit(void* Obj)
 {
 	((AVampireSurvivalCharacter*)Obj)->bIsReload = 1;
@@ -850,14 +819,14 @@ AVampireSurvivalCharacter::~AVampireSurvivalCharacter() {}
 // End Class AVampireSurvivalCharacter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AVampireSurvivalCharacter, AVampireSurvivalCharacter::StaticClass, TEXT("AVampireSurvivalCharacter"), &Z_Registration_Info_UClass_AVampireSurvivalCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalCharacter), 3404873452U) },
+		{ Z_Construct_UClass_AVampireSurvivalCharacter, AVampireSurvivalCharacter::StaticClass, TEXT("AVampireSurvivalCharacter"), &Z_Registration_Info_UClass_AVampireSurvivalCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AVampireSurvivalCharacter), 3169955534U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_3568066274(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_3527439092(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_VampireSurvivalCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

@@ -33,6 +33,14 @@ void AMainMenuHUD::ShowSignUpWidget()
 	}
 }
 
+void AMainMenuHUD::LoginSuccess()
+{
+	if(MainWidget)
+	{
+		MainWidget->AddToViewport();
+	}
+}
+
 void AMainMenuHUD::BeginPlay()
 {
 	Super::BeginPlay();

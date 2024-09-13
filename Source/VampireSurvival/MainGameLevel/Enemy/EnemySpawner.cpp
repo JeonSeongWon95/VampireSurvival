@@ -31,7 +31,7 @@ void AEnemySpawner::BeginPlay()
 	Super::BeginPlay();
 
 	SpawnTime = 0.0f;
-	SpawnTick = 3.0f;
+	SpawnTick = 10.0f;
 	MyTransform = GetTransform();
 }
 

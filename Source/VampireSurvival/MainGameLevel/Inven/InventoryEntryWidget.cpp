@@ -17,10 +17,13 @@ void UInventoryEntryWidget::NativeOnListItemObjectSet(UObject* ListItemObject)
 	}
 }
 
-void UInventoryEntryWidget::SetData(uint16 Count, FString Name, UImage* Image)
+void UInventoryEntryWidget::SetData(uint16 Count, FString Name, UTexture2D* Image)
 {
 	ItemCount->SetText(FText::AsNumber(Count));
 	ItemName->SetText(FText::FromString(Name));
-	ItemImage = *Image;
+
+	FSlateBrush Brush;
+	Brush.SetResourceObject(Image);
+	ItemImage->SetBrush(Brush);
 }
 

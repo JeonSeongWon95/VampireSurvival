@@ -62,6 +62,18 @@ public:
 	UFUNCTION()
 	void CanMove();
 
+	UFUNCTION(Server, Reliable)
+	void Server_CanMove();
+
+	UFUNCTION()
+	void Req_Attack(UAnimMontage* NewAnim);
+
+	UFUNCTION(Server, Reliable)
+	void Res_Attack(UAnimMontage* NewAnim);
+
+	UFUNCTION(NetMulticast, Reliable)
+	void Clinet_Attack(UAnimMontage* NewAnim);
+
 	UPROPERTY()
 	bool IsDead;
 

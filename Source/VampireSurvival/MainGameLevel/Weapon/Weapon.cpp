@@ -1,10 +1,10 @@
 #include "Weapon.h"
 #include "GameFramework/Character.h"
 #include "Components/BoxComponent.h"
-#include "VampireSurvivalCharacter.h"
+#include "../VampireSurvivalCharacter.h"
 #include "Net/UnrealNetwork.h"
-#include "bullet.h"
 #include "Engine/StaticMeshSocket.h"
+#include "../Enemy/Enemy.h"
 
 AWeapon::AWeapon()
 {
@@ -17,6 +17,7 @@ AWeapon::AWeapon()
 	SetRootComponent(WeaponMesh);
 
 	bReplicates = true;
+	Range = 1000;
 }
 
 void AWeapon::BeginPlay()
@@ -68,18 +69,24 @@ void AWeapon::FireWeapon()
 
 void AWeapon::FireWeapon_Server_Implementation()
 {
-	if (HasAuthority())
+	if (WeaponOwner != nullptr)
 	{
-		ABullet* Bullet = GetWorld()->SpawnActor<ABullet>(WeaponMesh->GetSocketLocation(FName("Muzzle")),
-		WeaponMesh->GetSocketRotation(FName("Muzzle")));
+		FVector Location = WeaponMesh->GetSocketLocation(FName("Muzzle"));
+		FVector WeaponRange = Location + (WeaponOwner->GetActorForwardVector() * Range);
 
-		if (Bullet && WeaponOwner)
+		FHitResult HitResult;
+		bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Location, WeaponRange, ECC_Visibility);
+
+		if (bHit)
 		{
-			Bullet->SetOwner(WeaponOwner->GetController());
-			UE_LOG(LogTemp, Error, TEXT("Buller SetOwner : %s"), *WeaponOwner->GetController()->GetName());
+			AEnemy* HitActor = Cast<AEnemy>(HitResult.GetActor());
+			HitActor->HitBullet(50);
 		}
 	}
+
+
 }
+
 
 void AWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {

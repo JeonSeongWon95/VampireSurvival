@@ -6,14 +6,13 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "Bullet.h"
-#include "Weapon.h"
+#include "Weapon/Weapon.h"
 #include "Engine/SkeletalMeshSocket.h"
 #include "InputMappingContext.h"
 #include "VampireSurvival/MainGameLevel/VampireSurvivalPlayerState.h"
 #include "Net/UnrealNetwork.h"
 #include "Components/CapsuleComponent.h"
-#include "InventoryComponent.h"
+#include "Inven/InventoryComponent.h"
 
 AVampireSurvivalCharacter::AVampireSurvivalCharacter()
 {
@@ -184,15 +183,6 @@ void AVampireSurvivalCharacter::Weaponfire(const FInputActionValue& Value)
 	}
 }
 
-//void AVampireSurvivalCharacter::WeaponNotfire(const FInputActionValue& Value)
-//{
-//	if (EquipWeapon != nullptr)
-//	{
-//		UE_LOG(LogTemp, Error, TEXT("Fire Finished"));
-//		Server_RequestFire();
-//	}
-//}
-
 AActor* AVampireSurvivalCharacter::FindNearWeapon()
 {
 	TArray<AActor*> Actors;
@@ -315,31 +305,20 @@ void AVampireSurvivalCharacter::PlayerIsNotRun_Implementation()
 	ChanageMovementSpeed(290.0f);
 }
 
-void AVampireSurvivalCharacter::OnReq_Fire()
-{
-	if (bIsfire)
-	{
-		if (EquipWeapon != nullptr)
-		{
-			UAnimMontage* FireAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Pistol/MM_Pistol_Fire_Montage.MM_Pistol_Fire_Montage'"));
-			PlayAnimMontage(FireAnim);
-		}
-	}
-}
-
 void AVampireSurvivalCharacter::OnReq_Reload()
 {
 }
 
 void AVampireSurvivalCharacter::Server_RequestFire_Implementation()
 {
-	if (bIsOnAim && !bIsfire)
+	if (!bIsfire)
 	{
 		bIsfire = true;
-
+		UAnimMontage* FireAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Pistol/MM_Pistol_Fire_Montage.MM_Pistol_Fire_Montage'"));
 		if (HasAuthority())
 		{
-			OnReq_Fire();
+			UE_LOG(LogTemp, Error, TEXT("Play Anim"));
+			PlayAnimMontage(FireAnim);
 		}
 	}
 }

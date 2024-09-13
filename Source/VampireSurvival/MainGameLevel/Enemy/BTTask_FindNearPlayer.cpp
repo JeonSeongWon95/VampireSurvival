@@ -38,13 +38,9 @@ AActor* UBTTask_FindNearPlayer::FindNearestPlayer(FVector Location)
     TArray<APlayerState*> PlayerArray = GetWorld()->GetGameState()->PlayerArray;
     for (APlayerState* PlayerState : PlayerArray)
     {
-        UE_LOG(LogTemp, Warning, TEXT("%d"), PlayerArray.Num());
 
         AActor* PlayerPawn = PlayerState->GetOwningController()->GetPawn();
 
-        //UGameplayStatics::GetAllActorsOfClassWithTag(GetWorld(), )
-
-        UE_LOG(LogTemp, Warning, TEXT("%s"), *PlayerPawn->GetName());
         if (PlayerPawn)
         {
             FVector PlayerLocation = PlayerPawn->GetActorLocation();

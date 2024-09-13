@@ -12,6 +12,7 @@ void EmptyLinkFunctionForGeneratedCodeEnemy() {}
 // Begin Cross Module References
 AIMODULE_API UClass* Z_Construct_UClass_UBehaviorTree_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
+ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 UPackage* Z_Construct_UPackage__Script_VampireSurvival();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AEnemy();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_AEnemy_NoRegister();
@@ -74,6 +75,55 @@ DEFINE_FUNCTION(AEnemy::execCantMove)
 	P_NATIVE_END;
 }
 // End Class AEnemy Function CantMove
+
+// Begin Class AEnemy Function Clinet_Attack
+struct Enemy_eventClinet_Attack_Parms
+{
+	UAnimMontage* NewAnim;
+};
+static FName NAME_AEnemy_Clinet_Attack = FName(TEXT("Clinet_Attack"));
+void AEnemy::Clinet_Attack(UAnimMontage* NewAnim)
+{
+	Enemy_eventClinet_Attack_Parms Parms;
+	Parms.NewAnim=NewAnim;
+	ProcessEvent(FindFunctionChecked(NAME_AEnemy_Clinet_Attack),&Parms);
+}
+struct Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_NewAnim;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::NewProp_NewAnim = { "NewAnim", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(Enemy_eventClinet_Attack_Parms, NewAnim), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::NewProp_NewAnim,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "Clinet_Attack", nullptr, nullptr, Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::PropPointers), sizeof(Enemy_eventClinet_Attack_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00024CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Enemy_eventClinet_Attack_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AEnemy_Clinet_Attack()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_Clinet_Attack_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execClinet_Attack)
+{
+	P_GET_OBJECT(UAnimMontage,Z_Param_NewAnim);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Clinet_Attack_Implementation(Z_Param_NewAnim);
+	P_NATIVE_END;
+}
+// End Class AEnemy Function Clinet_Attack
 
 // Begin Class AEnemy Function DoDeath
 struct Z_Construct_UFunction_AEnemy_DoDeath_Statics
@@ -216,6 +266,131 @@ DEFINE_FUNCTION(AEnemy::execOnReq_UpdateHP)
 }
 // End Class AEnemy Function OnReq_UpdateHP
 
+// Begin Class AEnemy Function Req_Attack
+struct Z_Construct_UFunction_AEnemy_Req_Attack_Statics
+{
+	struct Enemy_eventReq_Attack_Parms
+	{
+		UAnimMontage* NewAnim;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_NewAnim;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AEnemy_Req_Attack_Statics::NewProp_NewAnim = { "NewAnim", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(Enemy_eventReq_Attack_Parms, NewAnim), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AEnemy_Req_Attack_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AEnemy_Req_Attack_Statics::NewProp_NewAnim,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Req_Attack_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_Req_Attack_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "Req_Attack", nullptr, nullptr, Z_Construct_UFunction_AEnemy_Req_Attack_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Req_Attack_Statics::PropPointers), sizeof(Z_Construct_UFunction_AEnemy_Req_Attack_Statics::Enemy_eventReq_Attack_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Req_Attack_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_Req_Attack_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AEnemy_Req_Attack_Statics::Enemy_eventReq_Attack_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AEnemy_Req_Attack()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_Req_Attack_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execReq_Attack)
+{
+	P_GET_OBJECT(UAnimMontage,Z_Param_NewAnim);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Req_Attack(Z_Param_NewAnim);
+	P_NATIVE_END;
+}
+// End Class AEnemy Function Req_Attack
+
+// Begin Class AEnemy Function Res_Attack
+struct Enemy_eventRes_Attack_Parms
+{
+	UAnimMontage* NewAnim;
+};
+static FName NAME_AEnemy_Res_Attack = FName(TEXT("Res_Attack"));
+void AEnemy::Res_Attack(UAnimMontage* NewAnim)
+{
+	Enemy_eventRes_Attack_Parms Parms;
+	Parms.NewAnim=NewAnim;
+	ProcessEvent(FindFunctionChecked(NAME_AEnemy_Res_Attack),&Parms);
+}
+struct Z_Construct_UFunction_AEnemy_Res_Attack_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_NewAnim;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AEnemy_Res_Attack_Statics::NewProp_NewAnim = { "NewAnim", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(Enemy_eventRes_Attack_Parms, NewAnim), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AEnemy_Res_Attack_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AEnemy_Res_Attack_Statics::NewProp_NewAnim,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Res_Attack_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_Res_Attack_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "Res_Attack", nullptr, nullptr, Z_Construct_UFunction_AEnemy_Res_Attack_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Res_Attack_Statics::PropPointers), sizeof(Enemy_eventRes_Attack_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Res_Attack_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_Res_Attack_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Enemy_eventRes_Attack_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AEnemy_Res_Attack()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_Res_Attack_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execRes_Attack)
+{
+	P_GET_OBJECT(UAnimMontage,Z_Param_NewAnim);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Res_Attack_Implementation(Z_Param_NewAnim);
+	P_NATIVE_END;
+}
+// End Class AEnemy Function Res_Attack
+
+// Begin Class AEnemy Function Server_CanMove
+static FName NAME_AEnemy_Server_CanMove = FName(TEXT("Server_CanMove"));
+void AEnemy::Server_CanMove()
+{
+	ProcessEvent(FindFunctionChecked(NAME_AEnemy_Server_CanMove),NULL);
+}
+struct Z_Construct_UFunction_AEnemy_Server_CanMove_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainGameLevel/Enemy/Enemy.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemy_Server_CanMove_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemy, nullptr, "Server_CanMove", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00220CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemy_Server_CanMove_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemy_Server_CanMove_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AEnemy_Server_CanMove()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemy_Server_CanMove_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemy::execServer_CanMove)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Server_CanMove_Implementation();
+	P_NATIVE_END;
+}
+// End Class AEnemy Function Server_CanMove
+
 // Begin Class AEnemy Function Server_DoDeath
 static FName NAME_AEnemy_Server_DoDeath = FName(TEXT("Server_DoDeath"));
 void AEnemy::Server_DoDeath()
@@ -306,10 +481,14 @@ void AEnemy::StaticRegisterNativesAEnemy()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "CanMove", &AEnemy::execCanMove },
 		{ "CantMove", &AEnemy::execCantMove },
+		{ "Clinet_Attack", &AEnemy::execClinet_Attack },
 		{ "DoDeath", &AEnemy::execDoDeath },
 		{ "GetBehaviorTree", &AEnemy::execGetBehaviorTree },
 		{ "HitBullet", &AEnemy::execHitBullet },
 		{ "OnReq_UpdateHP", &AEnemy::execOnReq_UpdateHP },
+		{ "Req_Attack", &AEnemy::execReq_Attack },
+		{ "Res_Attack", &AEnemy::execRes_Attack },
+		{ "Server_CanMove", &AEnemy::execServer_CanMove },
 		{ "Server_DoDeath", &AEnemy::execServer_DoDeath },
 		{ "Server_RequestAddDamage", &AEnemy::execServer_RequestAddDamage },
 	};
@@ -347,10 +526,14 @@ struct Z_Construct_UClass_AEnemy_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AEnemy_CanMove, "CanMove" }, // 4213564500
 		{ &Z_Construct_UFunction_AEnemy_CantMove, "CantMove" }, // 1958083902
+		{ &Z_Construct_UFunction_AEnemy_Clinet_Attack, "Clinet_Attack" }, // 3837440601
 		{ &Z_Construct_UFunction_AEnemy_DoDeath, "DoDeath" }, // 1298180404
 		{ &Z_Construct_UFunction_AEnemy_GetBehaviorTree, "GetBehaviorTree" }, // 1353545247
 		{ &Z_Construct_UFunction_AEnemy_HitBullet, "HitBullet" }, // 2742965570
 		{ &Z_Construct_UFunction_AEnemy_OnReq_UpdateHP, "OnReq_UpdateHP" }, // 3621165456
+		{ &Z_Construct_UFunction_AEnemy_Req_Attack, "Req_Attack" }, // 915664967
+		{ &Z_Construct_UFunction_AEnemy_Res_Attack, "Res_Attack" }, // 2325403727
+		{ &Z_Construct_UFunction_AEnemy_Server_CanMove, "Server_CanMove" }, // 137713890
 		{ &Z_Construct_UFunction_AEnemy_Server_DoDeath, "Server_DoDeath" }, // 346757147
 		{ &Z_Construct_UFunction_AEnemy_Server_RequestAddDamage, "Server_RequestAddDamage" }, // 3863660729
 	};
@@ -417,14 +600,14 @@ AEnemy::~AEnemy() {}
 // End Class AEnemy
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 181730593U) },
+		{ Z_Construct_UClass_AEnemy, AEnemy::StaticClass, TEXT("AEnemy"), &Z_Registration_Info_UClass_AEnemy, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy), 3339363639U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_4145200465(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_670035719(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainGameLevel_Enemy_Enemy_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

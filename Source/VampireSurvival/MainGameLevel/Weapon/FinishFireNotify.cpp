@@ -2,7 +2,7 @@
 
 
 #include "FinishFireNotify.h"
-#include "VampireSurvivalCharacter.h"
+#include "../VampireSurvivalCharacter.h"
 #include "Weapon.h"
 
 void UFinishFireNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,

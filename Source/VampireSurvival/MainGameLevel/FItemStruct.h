@@ -21,22 +21,22 @@ public:
 		return ItemName == Other.ItemName;
 	};
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Name")
 	FString ItemName;
 
-	UPROPERTY()
-	uint32 SellingCost;
+	UPROPERTY(EditAnywhere, Category = "Cost")
+	uint16 SellingCost;
 
-	UPROPERTY()
-	uint32 ByingCost;
+	UPROPERTY(EditAnywhere, Category = "Cost")
+	uint16 ByingCost;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Count")
 	uint16 Count;
 
-	UPROPERTY()
-	TObjectPtr<class UImage> ItemImage;
+	UPROPERTY(EditAnywhere, Category = "Mesh")
+	TObjectPtr<class UTexture2D> ItemImage;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	TObjectPtr<class UStaticMesh> ItemMesh;
 
 };

@@ -42,11 +42,11 @@ void USignUpWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	if (Button_SignUp)
+	if (!(Button_SignUp->OnClicked.IsBound()))
 	{
 		Button_SignUp->OnClicked.AddDynamic(this, &USignUpWidget::SendClientIDAndPassword);
 	}
-	if (Button_Quit)
+	if (!(Button_Quit->OnClicked.IsBound()))
 	{
 		Button_Quit->OnClicked.AddDynamic(this, &USignUpWidget::ClickedQuitButton);
 	}

@@ -5,6 +5,7 @@
 #include "InventoryWidget.h"
 #include "InventoryEntryWidget.h"
 #include "Net/UnrealNetwork.h"
+#include "Components/Image.h"
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()
@@ -53,12 +54,14 @@ void UInventoryComponent::CreateInventory()
 
 }
 
-void UInventoryComponent::UpdateInventory()
+void UInventoryComponent::UpdateInventory_Implementation(const TArray<FItemStruct>& NewItems)
 {
 	if (InventoryWidget == nullptr)
 	{
 		return;
 	}
+
+	Items = NewItems;
 
 	ClearInventory();
 
@@ -79,15 +82,19 @@ void UInventoryComponent::ClearInventory()
 
 void UInventoryComponent::ShowInventory()
 {
-	UpdateInventory();
+	UE_LOG(LogTemp, Error, TEXT("Inventory Num : %d"), Items.Num());
+	InventoryWidget->SetGold(Gold);
 	InventoryWidget->AddToViewport();
-	UE_LOG(LogTemp, Error, TEXT("Inventory Open"));
 }
 
 void UInventoryComponent::CloseInventory()
 {
 	InventoryWidget->RemoveFromParent();
-	UE_LOG(LogTemp, Error, TEXT("Inventory Close"));
+}
+
+void UInventoryComponent::LogReplicated()
+{
+	UE_LOG(LogTemp, Error, TEXT("Array Replicated!"));
 }
 
 bool UInventoryComponent::AddItem(FItemStruct Item)
@@ -104,11 +111,15 @@ bool UInventoryComponent::AddItem(FItemStruct Item)
 
 void UInventoryComponent::Server_AddItem_Implementation(FItemStruct Item)
 {
+	UE_LOG(LogTemp, Error, TEXT("Item Add"));
+	
+
 	for (auto findItem : Items)
 	{
 		if (findItem.ItemName == Item.ItemName)
 		{
 			findItem.Count++;
+			UpdateInventory(Items);
 			return;
 		}
 	}
@@ -116,6 +127,8 @@ void UInventoryComponent::Server_AddItem_Implementation(FItemStruct Item)
 	if (Items.Num() < 9)
 	{
 		Items.Add(Item);
+		UE_LOG(LogTemp, Error, TEXT("Item Count : %d"), Items.Num());
+		UpdateInventory(Items);
 		return;
 	}
 }
@@ -152,7 +165,6 @@ void UInventoryComponent::Server_RemoveItem_Implementation(FItemStruct Item)
 		}
 	}
 
-	UE_LOG(LogTemp, Error, TEXT("Don't have Item"));
 }
 
 void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

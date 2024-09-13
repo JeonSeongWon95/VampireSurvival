@@ -23,11 +23,14 @@ AEnemy::AEnemy()
 		CharacterMesh->SetRelativeLocation(FVector(0.0f, 0.0f, -90.0f));
 		CharacterMesh->SetRelativeRotation(FRotator(0.0, -90.0f, 0.0f));
 		CharacterMesh->SetAnimClass(CharacterAnimBluePrint);
-	}	
+		CharacterMesh->SetCollisionProfileName("Enemy");
+	}
 
 	GetCapsuleComponent()->SetCollisionProfileName("Enemy");
 	GetCharacterMovement()->MaxWalkSpeed = 500;
 	GetCharacterMovement()->SetIsReplicated(true);
+
+	
 	bReplicates = true;
 	Health = 100;
 	IsDead = false;
@@ -70,6 +73,7 @@ void AEnemy::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimePr
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	
 	DOREPLIFETIME(AEnemy, Health);
+
 }
 
 UBehaviorTree* AEnemy::GetBehaviorTree()
@@ -116,7 +120,6 @@ void AEnemy::OnReq_UpdateHP()
 			IsDead = true;
 			DoDeath();
 		}
-
 	}
 }
 
@@ -133,16 +136,46 @@ void AEnemy::CantMove()
 
 void AEnemy::CanMove()
 {
+	if (HasAuthority())
+	{
+		GetCharacterMovement()->MaxWalkSpeed = 500.0;
+	}
+	else 
+	{
+		Server_CanMove();
+	}
+}
+
+void AEnemy::Server_CanMove_Implementation()
+{
 	GetCharacterMovement()->MaxWalkSpeed = 500.0;
+}
+
+void AEnemy::Req_Attack(UAnimMontage* NewAnim)
+{
+	Res_Attack(NewAnim);
+}
+
+void AEnemy::Clinet_Attack_Implementation(UAnimMontage* NewAnim)
+{
+	PlayAnimMontage(NewAnim);
+}
+
+void AEnemy::Res_Attack_Implementation(UAnimMontage* NewAnim)
+{
+	Clinet_Attack(NewAnim);
 }
 
 void AEnemy::Server_DoDeath_Implementation()
 {
+
 	if (HasAuthority())
 	{
 		GetWorld()->SpawnActor<AGoldActor>(GetActorLocation(), GetActorRotation());
 	}
 
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetCharacterMovement()->MaxWalkSpeed = 0;
 	GetWorld()->GetTimerManager().SetTimer(EnemyTimerHandle, this, &AEnemy::DestroyActor, 3.0f, false);
 }

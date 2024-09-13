@@ -23,6 +23,13 @@ void ULoginWidget::SendClientIDAndPassword()
 			if(GameInstance->SendMessageToServer(PlayerID, PlayerPassword, PlayerID.Len(), PlayerPassword.Len(), 1))
 			{
 				RemoveFromParent();
+
+				AMainMenuHUD* HUD = Cast<AMainMenuHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
+				if (HUD)
+				{
+					HUD->LoginSuccess();
+				}
 			}
 			else
 			{

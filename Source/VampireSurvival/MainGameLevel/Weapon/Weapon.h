@@ -49,4 +49,7 @@ public:
 	TObjectPtr<class UStaticMeshComponent> WeaponMesh;
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const;
+
+	UPROPERTY()
+	int16 Range;
 };

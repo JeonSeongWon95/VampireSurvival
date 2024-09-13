@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-#include "WeaponStruct.h"
+#include "Weapon/WeaponStruct.h"
 #include "VampireSurvivalCharacter.generated.h"
 
 UCLASS()
@@ -108,14 +108,11 @@ public:
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-	UPROPERTY(ReplicatedUsing = OnReq_Fire)
+	UPROPERTY(Replicated)
 	bool bIsfire;
 
 	UPROPERTY(ReplicatedUsing = OnReq_Reload)
 	bool bIsReload;
-
-	UFUNCTION()
-	void OnReq_Fire();
 
 	UFUNCTION()
 	void OnReq_Reload();

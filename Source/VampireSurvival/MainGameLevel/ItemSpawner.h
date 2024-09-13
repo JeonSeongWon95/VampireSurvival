@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TestActor.generated.h"
+#include "ItemSpawner.generated.h"
 
 UCLASS()
-class VAMPIRESURVIVAL_API ATestActor : public AActor
+class VAMPIRESURVIVAL_API AItemSpawner : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ATestActor();
+	AItemSpawner();
 
 protected:
 	// Called when the game starts or when spawned
@@ -22,14 +22,5 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY()
-	float Speed;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<class UStaticMeshComponent> StaticMesh;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<class UProjectileMovementComponent> Movement;
 
 };

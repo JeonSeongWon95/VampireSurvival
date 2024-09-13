@@ -9,7 +9,7 @@ public class VampireSurvival : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "EnhancedInput", 
-			"NavigationSystem", "GameplayTasks" , "AIModule", "InputCore", "UMG", "Sockets", "Networking" });
+			"NavigationSystem", "GameplayTasks" , "AIModule", "InputCore", "UMG", "Sockets", "Networking", "Slate", "SlateCore" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

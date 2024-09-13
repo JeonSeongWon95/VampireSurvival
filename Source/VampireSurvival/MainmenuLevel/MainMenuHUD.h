@@ -18,6 +18,9 @@ public:
 	UFUNCTION()
 	void ShowSignUpWidget();
 
+	UFUNCTION()
+	void LoginSuccess();
+
 protected:
 	
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "WidgetClass")

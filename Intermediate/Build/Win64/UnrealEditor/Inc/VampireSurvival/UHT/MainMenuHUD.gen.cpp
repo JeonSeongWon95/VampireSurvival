@@ -21,6 +21,35 @@ VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_UMainMenuWidget_NoRegister();
 VAMPIRESURVIVAL_API UClass* Z_Construct_UClass_USignUpWidget_NoRegister();
 // End Cross Module References
 
+// Begin Class AMainMenuHUD Function LoginSuccess
+struct Z_Construct_UFunction_AMainMenuHUD_LoginSuccess_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "MainmenuLevel/MainMenuHUD.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainMenuHUD_LoginSuccess_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainMenuHUD, nullptr, "LoginSuccess", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainMenuHUD_LoginSuccess_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainMenuHUD_LoginSuccess_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMainMenuHUD_LoginSuccess()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainMenuHUD_LoginSuccess_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMainMenuHUD::execLoginSuccess)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->LoginSuccess();
+	P_NATIVE_END;
+}
+// End Class AMainMenuHUD Function LoginSuccess
+
 // Begin Class AMainMenuHUD Function ShowSignUpWidget
 struct Z_Construct_UFunction_AMainMenuHUD_ShowSignUpWidget_Statics
 {
@@ -55,6 +84,7 @@ void AMainMenuHUD::StaticRegisterNativesAMainMenuHUD()
 {
 	UClass* Class = AMainMenuHUD::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "LoginSuccess", &AMainMenuHUD::execLoginSuccess },
 		{ "ShowSignUpWidget", &AMainMenuHUD::execShowSignUpWidget },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -121,6 +151,7 @@ struct Z_Construct_UClass_AMainMenuHUD_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AMainMenuHUD_LoginSuccess, "LoginSuccess" }, // 2824323024
 		{ &Z_Construct_UFunction_AMainMenuHUD_ShowSignUpWidget, "ShowSignUpWidget" }, // 807042518
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -185,14 +216,14 @@ AMainMenuHUD::~AMainMenuHUD() {}
 // End Class AMainMenuHUD
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_Statics
+struct Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainMenuHUD, AMainMenuHUD::StaticClass, TEXT("AMainMenuHUD"), &Z_Registration_Info_UClass_AMainMenuHUD, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainMenuHUD), 2486925875U) },
+		{ Z_Construct_UClass_AMainMenuHUD, AMainMenuHUD::StaticClass, TEXT("AMainMenuHUD"), &Z_Registration_Info_UClass_AMainMenuHUD, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainMenuHUD), 944752099U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_2731598114(TEXT("/Script/VampireSurvival"),
-	Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Game_Unreal_VampireSurvival_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_237569147(TEXT("/Script/VampireSurvival"),
+	Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Work_Ureal_Engine_MyProject2_VampireSurvival_Source_VampireSurvival_MainmenuLevel_MainMenuHUD_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

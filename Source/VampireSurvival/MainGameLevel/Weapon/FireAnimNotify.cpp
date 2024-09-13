@@ -2,7 +2,7 @@
 
 
 #include "FireAnimNotify.h"
-#include "VampireSurvivalCharacter.h"
+#include "../VampireSurvivalCharacter.h"
 #include "Weapon.h"
 
 void UFireAnimNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, 
@@ -10,8 +10,11 @@ void UFireAnimNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase
 {
 	AVampireSurvivalCharacter* Character = Cast<AVampireSurvivalCharacter>(MeshComp->GetOwner());
 
-	if(Character)
-	{
-		Character->EquipWeapon->FireWeapon();
-	}
+    if (Character)
+    {
+        if (Character->HasAuthority())
+        {
+            Character->EquipWeapon->FireWeapon();
+        }
+    }
 }

@@ -16,5 +16,6 @@ class VAMPIRESURVIVAL_API UUpdateTargetLocation : public UBTTaskNode
 	
 public:
 	UUpdateTargetLocation();
+
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 };

@@ -19,8 +19,6 @@ AEnemyController::AEnemyController()
 		return;
 	}
 
-	//BehaviorTree = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorTree"));
-	//TObjectPtr<>로 선언된 변수는 바로 사용이 불가하다. Get 함수를 이용해서 가져와야한다.
 }
 
 void AEnemyController::OnPossess(APawn* InPawn)
@@ -42,19 +40,6 @@ void AEnemyController::OnPossess(APawn* InPawn)
 		}
 
 	}
-
-	//UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(GetWorld());
-
-	//if (NavSystem == nullptr)
-	//{
-	//	return;
-	//}
-
-	//BehaviorTree = CreateDefaultSubobject<UBehaviorTree>(TEXT("BehaviorTree"));
-	//BlackboardData = LoadObject<UEnemyBlackboardData>(this, TEXT("/Script/CoreUObject.Class'/Script/VampireSurvival.EnemyBlackboardData'"));
-	//BlackboardComponent = GetBlackboardComponent();
-
-	////UseBlackboard(BlackboardData, BlackboardComponent);
 }
 
 void AEnemyController::BeginPlay()

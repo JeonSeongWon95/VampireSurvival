@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "FItemStruct.h"
+#include "../FItemStruct.h"
 #include "InventoryComponent.generated.h"
 
 
@@ -28,7 +28,7 @@ protected:
 	UPROPERTY()
 	TObjectPtr<class UInventoryEntryWidget> InventoryEntryWidget;
 
-	UPROPERTY(Replicated)
+	UPROPERTY(ReplicatedUsing = LogReplicated)
 	TArray<FItemStruct> Items;
 
 	UPROPERTY(Replicated)
@@ -42,8 +42,8 @@ public:
 	UFUNCTION()
 	void CreateInventory();
 
-	UFUNCTION()
-	void UpdateInventory();
+	UFUNCTION(Client, Reliable)
+	void UpdateInventory(const TArray<FItemStruct>& NewItems);
 
 	UFUNCTION()
 	void ClearInventory();
@@ -53,6 +53,9 @@ public:
 
 	UFUNCTION()
 	void CloseInventory();
+
+	UFUNCTION()
+	void LogReplicated();
 
 	UFUNCTION()
 	bool AddItem(FItemStruct Item);

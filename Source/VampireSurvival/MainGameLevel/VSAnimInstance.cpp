@@ -4,7 +4,7 @@
 #include "VampireSurvival/MainGameLevel/VSAnimInstance.h"
 #include "VampireSurvivalCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "VampireSurvival/MainGameLevel/Weapon.h"
+#include "VampireSurvival/MainGameLevel/Weapon/Weapon.h"
 
 void UVSAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {

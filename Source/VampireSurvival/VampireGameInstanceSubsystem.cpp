@@ -23,7 +23,7 @@ void UVampireGameInstanceSubsystem::ConnectedLoginServer()
 
 	ServerSocket = SocketSystem->CreateSocket(TEXT("Stream"), TEXT("ServerSocket"));
 
-	FString ServerIP = TEXT("127.0.0.1");
+	FString ServerIP = TEXT("192.168.3.67");
 	FIPv4Address IP;
 	FIPv4Address::Parse(ServerIP, IP);
 
@@ -75,6 +75,7 @@ bool UVampireGameInstanceSubsystem::SendUserData(FString& ID, FString& Password,
 
 		if (ServerSocket->Recv(reinterpret_cast<uint8*>(&Buffer), sizeof(Buffer), BytesRecv))
 		{
+			UE_LOG(LogTemp, Error, TEXT("Recive Byte : %d"), (int)strlen(Buffer));
 			UE_LOG(LogTemp, Error, TEXT("Recive to Server Socket"));
 
 			Buffer[BytesRecv] = '\0';
@@ -91,7 +92,15 @@ bool UVampireGameInstanceSubsystem::SendUserData(FString& ID, FString& Password,
 			}
 
 		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("2"));
+		}
 
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("1"));
 	}
 
 
