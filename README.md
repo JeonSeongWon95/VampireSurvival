@@ -15,8 +15,9 @@
 
 <details>
   <summary> 멤버쉽 기능 : 로그인, 회원가입 </summary>
-
+	
 ### 1. Server
+	
 ```cpp
 	WSAData wsaData;
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
@@ -507,10 +508,450 @@ void USignUpWidget::SendClientIDAndPassword()
 <details>
   <summary> 인벤토리 : 아이템 습득, 아이템 표시, 골드 획득 및 현재 골드량 표시 </summary>
 
+### 1. 아이템
+```cpp
+USTRUCT(BlueprintType)
+struct VAMPIRESURVIVAL_API FItemStruct : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FItemStruct();
+	~FItemStruct();
+
+	bool operator==(const FItemStruct& Other) const
+	{
+		return ItemName == Other.ItemName;
+	};
+
+	UPROPERTY()
+	FString ItemName;
+
+	UPROPERTY()
+	uint32 SellingCost;
+
+	UPROPERTY()
+	uint32 ByingCost;
+
+	UPROPERTY()
+	uint16 Count;
+
+	UPROPERTY(EditAnywhere, Category = "Mesh")
+	TObjectPtr<class UTexture2D> ItemImage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	TObjectPtr<class UStaticMesh> ItemMesh;
+
+};
+```
+하나의 아이템 정보를 구성할 이미지, 가격, 수량, 해당 아이템 메쉬를 갖는 구조체를 선언하였습니다.
+
++ 아이템 컴포넌트
+```cpp
+class VAMPIRESURVIVAL_API UInventoryComponent : public UActorComponent
+{
+	GENERATED_BODY()
+
+
+protected:
+	virtual void BeginPlay() override;
+
+	UPROPERTY()
+	TSubclassOf<class UInventoryWidget> InventoryWidgetClass;
+	UPROPERTY()
+	TSubclassOf<class UInventoryEntryWidget> InventoryEntryWidgetClass;
+
+	UPROPERTY()
+	TObjectPtr<class UInventoryWidget> InventoryWidget;
+	UPROPERTY()
+	TObjectPtr<class UInventoryEntryWidget> InventoryEntryWidget;
+
+	UPROPERTY(Replicated)
+	TArray<FItemStruct> Items;
+
+	UPROPERTY(Replicated)
+	uint16 Gold;
+
+
+void UInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(UInventoryComponent, Items);
+	DOREPLIFETIME(UInventoryComponent, Gold);
+}
+```
+실제로 아이템을 관리할 컴포넌트를 선언하고, 해당 컴포넌트를 원하는 Actor에 붙이도록 설계하였습니다.
+이 컴포넌트에서는 아이템 구조체를 배열(Items)로 갖으며, 서버 기준으로 항상 동기화되어야 하기 때문에 Replicated 매크로를 사용하였습니다.
+
+컴포넌트에서 인벤토리 열거나(ShowInventory) 닫는(CloseInventory) 기능을 구현하였으며, 아이템 추가(AddItem) 기능도 구현하였습니다.
+서버와 동기화가 되야하는 변수들은 GetLifetimeReplicatedProps 함수를 통해 서버로 보내는 데이터를 정의하였습니다.
+
+
+```cpp
+UInventoryComponent::UInventoryComponent()
+{
+	static ConstructorHelpers::FClassFinder<UInventoryWidget> FindInventoryClass(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/SeongWon/InventoryComponent/WG_InventoryWidget.WG_InventoryWidget_C'"));
+	static ConstructorHelpers::FClassFinder<UInventoryEntryWidget> FindInventoryEntryClass(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/SeongWon/InventoryComponent/WG_InventorEntryWidget.WG_InventorEntryWidget_C'"));
+
+	if (FindInventoryClass.Succeeded())
+	{
+		InventoryWidgetClass = FindInventoryClass.Class;
+	}
+	if (FindInventoryEntryClass.Succeeded())
+	{
+		InventoryEntryWidgetClass = FindInventoryEntryClass.Class;
+	}
+
+	InventoryWidget = nullptr;
+	InventoryEntryWidget = nullptr;
+	Gold = 0;
+}
+
+void UInventoryComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	CreateInventory();
+}
+
+void UInventoryComponent::CreateInventory()
+{
+
+	if (InventoryWidget == nullptr)
+	{
+		InventoryWidget = CreateWidget<UInventoryWidget>(GetWorld(), InventoryWidgetClass);
+	}
+
+}
+```
+생성 시 Inventory Component는 화면에 띄울 인벤토리 Widget의 Class를 미리 가져옵니다.
+그리고 시작 시 가져온 class를 바탕으로 Widget을 생성합니다.
+
+```cpp
+void UInventoryComponent::ShowInventory()
+{
+	InventoryWidget->SetGold(Gold);
+	InventoryWidget->AddToViewport();
+}
+
+void UInventoryComponent::CloseInventory()
+{
+	InventoryWidget->RemoveFromParent();
+}
+```
+해당 컴포넌트의 ShowInventory 함수가 호출되면(i키를 누름) Inventory를 화면에 띄우며, 이미 띄워진 경우 화면에서 Remove합니다.
+
+```cpp
+bool UInventoryComponent::AddItem(FItemStruct Item)
+{
+	if(Items.Num() > 9)
+	{
+		return false;
+	}
+
+	Server_AddItem(Item);
+
+	return true;
+}
+
+void UInventoryComponent::Server_AddItem_Implementation(FItemStruct Item)
+{
+	UE_LOG(LogTemp, Error, TEXT("Item Add"));
+	
+
+	for (auto findItem : Items)
+	{
+		if (findItem.ItemName == Item.ItemName)
+		{
+			findItem.Count++;
+			UpdateInventory(Items);
+			return;
+		}
+	}
+
+	if (Items.Num() < 9)
+	{
+		Items.Add(Item);
+		UE_LOG(LogTemp, Error, TEXT("Item Count : %d"), Items.Num());
+		UpdateInventory(Items);
+		return;
+	}
+}
+```
+아이템 Object와 overlap되면 아이템은 본인이 가진 Item 구조체를 인자로 하여 Component의 AddItem함수를 호출합니다.
+AddItem 함수에서는 인벤토리가 가득찬 경우 false를 반환하며, 그렇지 않은 경우 UFUNCTION(Server, Reliable)로 설정된 Server_AddItem 함수를 호출합니다.
+
+Items을 확인하여 동일한 Item이 있는 경우 해당 Item의 갯수를 증가시키며, 아닌 경우는 Items 배열에 추가하였습니다.
+그리고 이와 같이 변동이 있는 경우 Update함수를 통해 TileView의 Entry Widget을 Update하도록 하였습니다.
+
+```cpp
+void UInventoryComponent::UpdateInventory_Implementation(const TArray<FItemStruct>& NewItems)
+{
+	if (InventoryWidget == nullptr)
+	{
+		return;
+	}
+
+	Items = NewItems;
+
+	ClearInventory();
+
+	for (auto Item : Items)
+	{
+		InventoryEntryWidget = CreateWidget<UInventoryEntryWidget>(GetWorld(), InventoryEntryWidgetClass);
+		InventoryEntryWidget->SetData(Item.Count, Item.ItemName, Item.ItemImage);
+		InventoryWidget->AddTileView(InventoryEntryWidget);
+	}
+
+	InventoryWidget->SetGold(Gold);
+}
+
+void UInventoryComponent::ClearInventory()
+{
+	InventoryWidget->ClearTileView();
+}
+```
+Update함수는 Client, Reliable로 설정되어 있어 해당 Actor의 소유자만 본인의 게임에서 이 함수를 실행하게 됩니다.
+Inventory Widget의 TileView를 지우고, 다시 Items 배열에 따라 Entry Widget을 생성 및 TileView에 추가하였습니다.
+
+```cpp
+void UInventoryEntryWidget::NativeOnListItemObjectSet(UObject* ListItemObject)
+{
+	UInventoryEntryWidget* CastObject = Cast<UInventoryEntryWidget>(ListItemObject);
+
+	if (CastObject)
+	{
+		CastObject->ItemName = ItemName;
+		CastObject->ItemCount = ItemCount;
+		CastObject->ItemImage = ItemImage;
+	}
+}
+
+void UInventoryEntryWidget::SetData(uint16 Count, FString Name, UImage* Image)
+{
+	ItemCount->SetText(FText::AsNumber(Count));
+	ItemName->SetText(FText::FromString(Name));
+	ItemImage = *Image;
+}
+```
+Entry Widget은 들어온 인자를 바탕으로 본인의 Imager, Text 들을 설정합니다.
+그리고 TileView의 경우 실제로 보여지는 Widget과 생성된 Widget간의 데이터 동기화를 위해 NativeOnListItemObjectSet 함수를 override하여 들어온 데이터를 보여지는 Widget에도 설정되도록 업데이트합니다.
+
+```cpp
+void AItemSpawner::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if(HasAuthority())
+	{
+		GetWorld()->SpawnActor<AItem>(nullptr, GetActorLocation(), GetActorRotation());
+	}
+	
+}
+```
+아이템은 Level에 배치된 ItemSpawner를 통해 생성되며, 서버(HasAuthority)에서만 생성하도록 하였습니다.
+
+```cpp
+AItem::AItem()
+{
+	static const FString ContextString(TEXT("Item Data Table"));
+	static const FString DataTablePath(TEXT("/Script/Engine.DataTable'/Game/SeongWon/Data/DT_ItemData.DT_ItemData'"));
+
+	UDataTable* DataTable = Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), nullptr, *DataTablePath));
+	if (DataTable == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failed to load Data Table at path: %s"), *DataTablePath);
+	}
+
+	const FString RowName = TEXT("Potion");
+	FItemStruct* ItemData = DataTable->FindRow<FItemStruct>(FName(*RowName), ContextString);
+
+	Data = *ItemData;
+	bReplicates = true;
+
+	Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
+	SetRootComponent(Collision);
+	Collision->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	Collision->SetCollisionProfileName("Gold");
+
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	Mesh->SetStaticMesh(Data.ItemMesh);
+	Mesh->SetupAttachment(Collision);
+	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+}
+```
+Item은 앞서 정의한 FItemStruct를 변수로 갖습니다.
+생성자에서 우선 Data Table의 경로에서 해당 Data Table을 가져온 뒤 해당 Table의 "potion"이라는 RowName의 Data를 찾아옵니다.
+
+가져온 데이터로 본인의 FItemStruct 변수에 할당하며, 플레이어와 충돌을 감지할 Collision과 Level에서 보일 Mesh를 설정합니다.
+```cpp
+void AItem::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	if(!(Collision->OnComponentBeginOverlap.IsBound()))
+	{
+		Collision->OnComponentBeginOverlap.AddDynamic(this, &AItem::EventOverlap);
+	}
+}
+
+void AItem::EventOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, 
+	bool bFromSweep, const FHitResult& SweepResult)
+{
+	AVampireSurvivalCharacter* CastCharacter = Cast<AVampireSurvivalCharacter>(OtherActor);
+
+	if (CastCharacter)
+	{
+		UInventoryComponent* IC = CastCharacter->GetComponentByClass<UInventoryComponent>();
+
+		if (IC)
+		{
+			IC->AddItem(Data);
+			DestoryActor();
+		}
+	}
+}
+
+void AItem::DestoryActor()
+{
+	Server_DestroyActor();
+}
+
+void AItem::Server_DestroyActor_Implementation()
+{
+	Destroy();
+}
+```
+게임이 시작되면 EventOverlap함수를 연결하여 플레이어가 Overlap되면 해당 함수가 호출되도록 하였습니다.
+해당 함수내에서는 플레이어인지 확인하여 동일한 경우 해당 Actor의 Inventory Component를 가져와 AddItem 함수와 본인의 DestoryActor함수를 호출합니다.
+DestoryActor 함수는 서버에서 동작하는 Server_DestroyActor함수를 요청하며, 이로 인해 서버에서 객체를 지워주게 됩니다.
+
+### 2. 골드
+```cpp
+
+void AEnemy::DoDeath()
+{
+	Server_DoDeath();
+}
+void AEnemy::Server_DoDeath_Implementation()
+{
+
+	if (HasAuthority())
+	{
+		GetWorld()->SpawnActor<AGoldActor>(GetActorLocation(), GetActorRotation());
+	}
+
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetCharacterMovement()->MaxWalkSpeed = 0;
+	GetWorld()->GetTimerManager().SetTimer(EnemyTimerHandle, this, &AEnemy::DestroyActor, 3.0f, false);
+}
+```
+골드는 Enemy가 사망하면 Server 기준으로 GoldActor를 Spawn합니다.
+
+```cpp
+AGoldActor::AGoldActor()
+{
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> SM_Gold(TEXT("/Script/Engine.StaticMesh'/Game/AncientTreasures/Meshes/SM_Gems_01c.SM_Gems_01c'"));
+	PrimaryActorTick.bCanEverTick = true;
+
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	RootComponent = Mesh;
+
+	if(SM_Gold.Succeeded())
+	{
+		Mesh->SetStaticMesh(SM_Gold.Object);
+	}
+	
+	BoxCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
+	BoxCollision->SetupAttachment(Mesh);
+
+	Mesh->SetSimulatePhysics(true);
+	Mesh->SetCollisionProfileName("Gold");
+	bReplicates = true;
+}
+
+void AGoldActor::BeginPlay()
+{
+	Super::BeginPlay();
+	Mesh->SetWorldScale3D(FVector(5.f, 5.f, 5.f));
+	BoxCollision->SetBoxExtent(FVector(5.f, 5.f, 5.f));
+
+	if(!(BoxCollision->OnComponentBeginOverlap.IsBound()))
+	{
+		BoxCollision->OnComponentBeginOverlap.AddDynamic(this, &AGoldActor::EventOverlap);
+	}
+}
+```
+GoldActor는 생성 시 보석 모양의 Mesh를 가져와 StaticMesh로 설정하며, BoxCollision을 추가하여 플레이어와의 충돌을 체크하였습니다.
+게임이 시작되면 크기를 키워 쉽게 보이게 하였으며, Overlap 함수를 연결하였습니다.
+
+```cpp
+void AGoldActor::EventOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+	bool bFromSweep, const FHitResult& SweepResult)
+{
+	AVampireSurvivalCharacter* CastCharacter = Cast<AVampireSurvivalCharacter>(OtherActor);
+
+	if(CastCharacter)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Overlap Actor : %s"), *CastCharacter->GetName());
+		UInventoryComponent* IC = CastCharacter->GetComponentByClass<UInventoryComponent>();
+
+		if(IC)
+		{
+			IC->AddGold(100);
+			DestoryActor();
+		}
+	}
+}
+
+void AGoldActor::DestoryActor()
+{
+	Server_DestoryActor();
+}
+
+void AGoldActor::Server_DestoryActor_Implementation()
+{
+	Destroy();
+}
+```
+Item과 마찬가지로 Overlap되면 해당 캐릭터의 Inventory Component의 AddGold 함수를 실행하며, Server_DestoryActor를 호출하여 서버에서 지워지도록 하였습니다.
 </details>
 
 <details>
   <summary> 애니메이션 : 사격, 총 장착, 달리기 </summary>
+
+### 1. Anim Instance
+```cpp
+void UVSAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
+{
+	Player = Cast<AVampireSurvivalCharacter>(TryGetPawnOwner());
+
+	if(Player)
+	{
+		Speed = Player->GetCharacterMovement()->Velocity.Size2D();
+		bIsFire = Player->bIsfire;
+		bIsReload = Player->bIsReload;
+		bIsOnAim = Player->bIsOnAim;
+
+		EquipWeapon = Player->EquipWeapon;
+
+		if(EquipWeapon != nullptr)
+		{
+			bIsEquip = true;
+		}
+		else
+		{
+			bIsEquip = false;
+		}
+	}
+}
+```
+애니메이션에서 사용될 변수들은 Player의 변수들을 가져와 할당하였습니다.
+달리는 애니메이션은 점프와 다르므로 Player의 Velocity를 z축을 제외한 2개의 축만 가져오도록 하였습니다.(Size2D)
+
+
 
 </details>
 
