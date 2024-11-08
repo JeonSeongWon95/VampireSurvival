@@ -951,11 +951,655 @@ void UVSAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 애니메이션에서 사용될 변수들은 Player의 변수들을 가져와 할당하였습니다.
 달리는 애니메이션은 점프와 다르므로 Player의 Velocity를 z축을 제외한 2개의 축만 가져오도록 하였습니다.(Size2D)
 
+![1](https://github.com/user-attachments/assets/f5f94d97-0bc2-4a14-9b35-e4b6fe81b2d4)
 
 
+Main Pose는 장비의 장착여부로 구성된 총 6개의 State를 가지고 있습니다.
+
+![2](https://github.com/user-attachments/assets/3bdc1f22-0ba8-4842-9abe-513adf6d0d75)
+![3](https://github.com/user-attachments/assets/c786fd22-9510-461d-9740-8f8c52390a32)
+![4](https://github.com/user-attachments/assets/aa62e3ee-f3c5-4aea-9b0b-56070009f637)
+
+각 State는 앞서 설정한 변수에 따라 State가 변경됩니다.
+
+![5](https://github.com/user-attachments/assets/d4312149-051e-44a8-a1e9-1dd9ffb00eec)
+
+사격의 경우 총을 장착한 상태에서 조준 변수가 true로 되면 상체의 Animation만 변경되도록 Blend Poses를 사용하였습니다.
+각 애니메이션은 라이라 프로젝트에서 리소스를 받아 사용하였습니다.
+</details>
+
+
+<details>
+  <summary> 무기 : 습득, 장착, 사격 </summary>
+
+### 1. 무기 구조체 선언
+```cpp
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/DataTable.h"
+#include "WeaponStruct.generated.h"
+
+UENUM()
+enum class WeaponType : uint8
+{
+	None UMETA(DisplayName = "None"),
+	Pistol UMETA(DisplayName = "Pistol"),
+	Rifle UMETA(DisplayName = "Rifle"),
+	ShotGun UMETA(DisplayName = "ShotGun"),
+	MAX UMETA(DisplayName = "Max")
+
+};
+
+
+USTRUCT(BlueprintType)
+struct FWeaponStruct : public FTableRowBase
+{
+	GENERATED_BODY()
+
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Name")
+	WeaponType Type;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
+	TObjectPtr<UStaticMesh> Mesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float Demage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float MaxAmmo;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float Distance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float FireRate;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sound")
+	TObjectPtr<USoundBase> Sound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Effect")
+	TObjectPtr<UParticleSystem> Effect;
+
+};
+```
+무기는 아이템과 마찬가지로 가장 기본이 되는 데미지, 총탄, 발사속도 등과 같은 정보를 갖는 구조체를 선언하였습니다.
+
+```cpp
+AWeaponSpawner::AWeaponSpawner()
+{
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+
+	static ConstructorHelpers::FClassFinder<AWeapon> Weapon_Pistol(TEXT("/Script/Engine.Blueprint'/Game/SeongWon/BP/BP_Pistol.BP_Pistol_C'"));
+
+	if(Weapon_Pistol.Succeeded())
+	{
+		WeaponClass = Weapon_Pistol.Class;
+	}
+
+	bReplicates = true;
+
+}
+```
+Level에 존재하는 Spawner를 통해 Spawn되며, Spawner는 생성 시 Weapon의 Pistol class를 가져와 미리 저장해놓습니다.
+또한, Spawn은 모든 Client와 동기화가 되어야 하므로 bReplicates 변수를 true로 선언하였습니다.
+
+```cpp
+void AWeaponSpawner::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if(HasAuthority())
+	{
+		AWeapon* SpawnedWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponClass, GetActorLocation(), GetActorRotation());
+		SpawnedWeapon->SetOwner(this);
+	}
+	
+}
+```
+게임이 시작되면 서버(HasAuthority)에서 미리 저장한 Class를 바탕으로 Weapon객체를 생성하고 소유권을 Server로 합니다.
+
+```cpp
+AWeapon::AWeapon()
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>("Weapon");
+	WeaponMesh->SetCollisionProfileName("Weapon");
+	WeaponMesh->SetSimulatePhysics(true);
+	WeaponMesh->SetWorldScale3D(FVector(2.0, 2.0, 2.0));
+	SetRootComponent(WeaponMesh);
+
+	bReplicates = true;
+	Range = 1000;
+}
+```
+생성된 Weapon 객체는 Mesh, 크기를 조정합니다.
+
+```cpp
+void AVampireSurvivalCharacter::PressedPickUpKey(const FInputActionValue& Value)
+{
+	Server_PressedPickUpWeaponKey();
+}
+
+void AVampireSurvivalCharacter::Server_PressedPickUpWeaponKey_Implementation()
+{
+	AActor* NearWeapon = FindNearWeapon();
+
+	if (false == IsValid(NearWeapon))
+	{
+		return;
+	}
+	if (EquipWeapon != nullptr)
+	{
+		EquipWeapon->SetOwner(nullptr);
+	}
+
+	if (HasAuthority())
+	{
+		UE_LOG(LogTemp, Error, TEXT("Weapon Owner Set"));
+		NearWeapon->SetOwner(GetController());
+	}
+
+	Client_PressedPickUpWeaponKey(NearWeapon);
+}
+```
+Character에서 PickUp Key를 누르면 서버로 함수 요청이 가며(Server_PressedPickUpWeaponKey), 해당 함수는 서버 기준으로 가장 가까운 Weapon을 찾는 NearWeapon 함수를 호출합니다.
+다만, 함수 호출 전 이미 장착한 무기가 있는 경우 해당 무기를 버릴 수 있도록 Owner 설정을 변경합니다.
+
+```cpp
+AActor* AVampireSurvivalCharacter::FindNearWeapon()
+{
+	TArray<AActor*> Actors;
+	GetCapsuleComponent()->GetOverlappingActors(Actors, AWeapon::StaticClass());
+
+	if (Actors.Num() <= 0)
+	{
+
+	}
+	double Distance = 999999.0f;
+	AActor* NearActor = nullptr;
+
+	for (AActor* TargetActor : Actors)
+	{
+		if (EquipWeapon == TargetActor)
+		{
+			continue;
+		}
+
+		double ActorDistance = FVector::Distance(GetActorLocation(), TargetActor->GetActorLocation());
+
+		if (ActorDistance >= Distance)
+		{
+			continue;
+		}
+
+		Distance = ActorDistance;
+		NearActor = TargetActor;
+	}
+
+	return NearActor;
+}
+```
+FindNearWeapon 함수에서는 현재 플레이어의 Capsule COmponent와 Overlap된 모든 Actor 중 Weapon Class만을 배열로 가져옵니다.
+기본 거리를 최대한 높게 설정하고 범위기반 반복문을 통해 해당 거리보다 가까운 Weapon 객체가 있다면 그것을 Near Actor에 할당하고, 해당 Actor와의 거리를 Distance에 대입합니다.
+
+이렇게 해서 가장 가까운 Weapon Actor를 찾아 반환합니다.
+
+```cpp
+void AVampireSurvivalCharacter::Client_PressedPickUpWeaponKey_Implementation(AActor* NewWeapon)
+{
+	AWeapon* NewEquipWeapon = Cast<AWeapon>(NewWeapon);
+
+	if (NewEquipWeapon)
+	{
+		if (EquipWeapon != nullptr)
+		{
+
+			EquipWeapon->DoUnEquipWeapon(this);
+			EquipWeapon = nullptr;
+
+		}
+
+		EquipWeapon = NewEquipWeapon;
+		EquipWeapon->DoEquipWeapon(this);
+	}
+
+}
+```
+서버에서 해당 Weapon을 찾아 넘겨주면 그 다음부터는 Client에서 처리되도록 NetMulticast, Reliable로 설정된 Client_PressedPickUpWeaponKey_Implementation함수가 호출됩니다.
+Client가 아닌 NetMulticast를 속성을 통해 해당 Actor가 모든 Client의 게임 속에서 실행되며, 서버 기준 가장 가까운 Weapon을 인자로 넘겨 받아 해당 Weapon을 장착 무기 변수에 할당합니다.
+그 후 Weapon의 DoEquipWeapon 함수에 플레이어 본인을 넣어 실행합니다.
+(기존에 장착되었던 무기는 DoUnEquipWeapon 함수를 호출합니다.)
+
+```cpp
+void AWeapon::DoUnEquipWeapon(ACharacter* OwingCharacter)
+{
+	DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+	WeaponMesh->SetSimulatePhysics(true);
+	WeaponOwner = nullptr;
+}
+
+void AWeapon::DoEquipWeapon(ACharacter* OwingCharacter)
+{
+
+	WeaponOwner = OwingCharacter;
+
+	if (WeaponOwner)
+	{
+		WeaponMesh->SetSimulatePhysics(false);
+		AttachToComponent(WeaponOwner->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, FName("Pistol"));
+	}
+}
+```
+DoUnEquipWeapon 함수는 DetachFormActor 함수를 통해 플레이어로부터 Detach 시키며, 다시 물리 연산을 동작시킵니다.
+EquipWeapon 함수에서는 플레이어의 Mesh에 Socket Name을 통해 해당 위치로 Attach 시키며 장착되었을때는 땅에 떨어지거나 회전 등 물리 연산을 받아선 안되므로 SimulatePhysics를 끕니다.
+
+
+### 2. 무기 조준, 발사
+```cpp
+void AVampireSurvivalCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	InputMappingContext = LoadObject<UInputMappingContext>(nullptr, TEXT("/Script/EnhancedInput.InputMappingContext'/Game/SeongWon/Input/IMC_MyMapping.IMC_MyMapping'"));
+
+	if (InputMappingContext)
+	{
+		if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
+		{
+			if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+			{
+				Subsystem->AddMappingContext(InputMappingContext, 0);
+			}
+		}
+	}
+
+
+	UEnhancedInputComponent* EIC = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+
+	if (EIC)
+	{
+		EIC->BindAction(IA_EnhancedMove, ETriggerEvent::Triggered, this, &AVampireSurvivalCharacter::EnhancedMove);
+		EIC->BindAction(IA_Run, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedRun);
+		EIC->BindAction(IA_Run, ETriggerEvent::Completed, this, &AVampireSurvivalCharacter::ReleasedRun);
+		EIC->BindAction(IA_PickUpWeapon, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedPickUpKey);
+		EIC->BindAction(IA_Fire, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::Weaponfire);
+		EIC->BindAction(IA_OnAim, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedAim);
+		EIC->BindAction(IA_OnAim, ETriggerEvent::Completed, this, &AVampireSurvivalCharacter::ReleaseAim);
+		EIC->BindAction(IA_OpenInventory, ETriggerEvent::Started, this, &AVampireSurvivalCharacter::PressedOpenInventory);
+	}
+
+}
+
+void AVampireSurvivalCharacter::PressedAim(const FInputActionValue& Value)
+{
+	Server_RequestAimMode();
+}
+
+void AVampireSurvivalCharacter::ReleaseAim(const FInputActionValue& Value)
+{
+	Server_RequestAimModeFasle();
+}
+```
+무기 조준은 조준키를 누르면 서버로 함수요청을 하도록 하였으며, 반대로 버튼에서 손을 떼면 다시 Release 되도록 두 개의 함수를 Bind 하였습니다.
+
+```cpp
+void AVampireSurvivalCharacter::Server_RequestAimMode_Implementation()
+{
+	bIsOnAim = true;
+}
+void AVampireSurvivalCharacter::Server_RequestAimModeFasle_Implementation()
+{
+	bIsOnAim = false;
+}
+
+void AVampireSurvivalCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AVampireSurvivalCharacter, bIsfire);
+	DOREPLIFETIME(AVampireSurvivalCharacter, bIsReload);
+	DOREPLIFETIME(AVampireSurvivalCharacter, bIsOnAim);
+}
+```
+각 두 개의 함수는 캐릭터 class에 선언된 변수를 서버 기준 변경을 하도록 하였으며, GetLifetimeReplicatedProps함수를 통해 해당 변수들을 복제, 동기화하도록 설정하였습니다.
+해당 변수의 값에 따라 Animation Blue Print에서 Blend per를 통해 조준하는 Animation이 실행되거나, 실행 취소가 됩니다.
+
+![1](https://github.com/user-attachments/assets/7751a1de-599e-459e-a3b7-3fcc1b0f8dd0) ![2](https://github.com/user-attachments/assets/f7f85987-310c-41e2-9461-413a9a5d36d0)
+
+```cpp
+void AVampireSurvivalCharacter::Weaponfire(const FInputActionValue& Value)
+{
+	if (EquipWeapon != nullptr)
+	{
+		Server_RequestFire();
+	}
+}
+
+void AVampireSurvivalCharacter::Server_RequestFire_Implementation()
+{
+	if (!bIsfire)
+	{
+		bIsfire = true;
+		UAnimMontage* FireAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Pistol/MM_Pistol_Fire_Montage.MM_Pistol_Fire_Montage'"));
+		if (HasAuthority())
+		{
+			UE_LOG(LogTemp, Error, TEXT("Play Anim"));
+			PlayAnimMontage(FireAnim);
+		}
+	}
+}
+```
+장착한 무기가 있는 경우 특정 키를 눌러 Fire 함수를 호출할 수 있으며, 해당 함수는 서버로 요청하여 서버 기준 bIsfire 변수를 true로 만든 후 Anim Montage를 실행시킵니다.
+
+```cpp
+void UFireAnimNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, 
+	const FAnimNotifyEventReference& EventReference)
+{
+	AVampireSurvivalCharacter* Character = Cast<AVampireSurvivalCharacter>(MeshComp->GetOwner());
+
+    if (Character)
+    {
+        if (Character->HasAuthority())
+        {
+            Character->EquipWeapon->FireWeapon();
+        }
+    }
+}
+```
+FireAnim Montage가 실행되면 해당 Montage의 초기부분에 위치한 UFireAnimNotify가 호출됩니다.
+해당 Notify에서는 EquipWeapon의 FireWeapon 함수를 호출합니다.
+
+```cpp
+void AWeapon::FireWeapon()
+{
+	FireWeapon_Server();
+}
+
+void AWeapon::FireWeapon_Server_Implementation()
+{
+	if (WeaponOwner != nullptr)
+	{
+		FVector Location = WeaponMesh->GetSocketLocation(FName("Muzzle"));
+		FVector WeaponRange = Location + (WeaponOwner->GetActorForwardVector() * Range);
+
+		FHitResult HitResult;
+		bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Location, WeaponRange, ECC_Visibility);
+
+		if (bHit)
+		{
+			AEnemy* HitActor = Cast<AEnemy>(HitResult.GetActor());
+			HitActor->HitBullet(50);
+		}
+	}
+
+
+}
+```
+Notify는 해당 Weapon의 Server 함수를 호출할 권한이 없으므로, Weapon의 일반 함수를 호출하고 해당 함수 내에서 Weapon이 본인의 Server 함수를 호출하도록 하였습니다.
+Weapon의 Socket을 가져와 해당 Socket의 위치 값에서 LineTrace를 발사하며, 해당 LineTrace에 Hit 결과 중 해당 Actor가 적인 경우에 데미지를 주는 HitBullet 함수를 호출합니다.
+
+```cpp
+void AEnemy::HitBullet(int32 Damage)
+{
+	Server_RequestAddDamage(Damage);
+}
+
+void AEnemy::Server_RequestAddDamage_Implementation(int32 Damage)
+{
+	if((Health - Damage) < 0)
+	{
+		Health = 0;
+	}
+	else
+	{
+		Health -= Damage;
+	}
+
+	if(HasAuthority())
+	{
+		OnReq_UpdateHP();
+	}
+}
+```
+Enemy에서는 전달받은 Damager를 다시 서버 함수로 전달하여 서버 기준 본인이 Health를 변경합니다.
+
+```cpp
+void UFinishFireNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
+	const FAnimNotifyEventReference& EventReference)
+{
+	AVampireSurvivalCharacter* Character = Cast<AVampireSurvivalCharacter>(MeshComp->GetOwner());
+
+	if (Character)
+	{
+		Character->ClientRequestFireFalse();
+	}
+}
+```
+마지막으로 계속 해서 Fire가 되지 않도록 bIsfire가 false일 경우에만 fire가 되는데 이는 해당 Anim Montage가 끝날때 호출되는 UFinishFireNotify에서 다시 false로 변경해주도록 설계하였습니다.
 </details>
 
 <details>
   <summary> 적 : 적 AI </summary>
 
+### 1. Behavior Tree
+
+
+![3](https://github.com/user-attachments/assets/ddf0d5d3-333b-4658-b30f-e7e445162abc)
+
+적은 미리 설계한 Behavior Tree의 Task를 순차적으로 실행합니다.
+
+
+```cpp
+EBTNodeResult::Type UBTTask_FindNearPlayer::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
+{
+
+    UBlackboardComponent* BlackboardComp = OwnerComp.GetBlackboardComponent();
+    if (BlackboardComp)
+    {
+        FVector CurrentLocation = OwnerComp.GetAIOwner()->GetPawn()->GetActorLocation();
+        AActor* NearestPlayer = FindNearestPlayer(CurrentLocation);
+
+        if (NearestPlayer)
+        {
+            BlackboardComp->SetValueAsObject(TEXT("Target"), NearestPlayer);
+            return EBTNodeResult::Succeeded;
+        }
+    }
+
+    return EBTNodeResult::Failed;
+}
+
+AActor* UBTTask_FindNearPlayer::FindNearestPlayer(FVector Location)
+{
+    AActor* NearestPlayer = nullptr;
+    double NearestDistance = TNumericLimits<double>::Max();
+
+    TArray<APlayerState*> PlayerArray = GetWorld()->GetGameState()->PlayerArray;
+    for (APlayerState* PlayerState : PlayerArray)
+    {
+
+        AActor* PlayerPawn = PlayerState->GetOwningController()->GetPawn();
+
+        if (PlayerPawn)
+        {
+            FVector PlayerLocation = PlayerPawn->GetActorLocation();
+            double Distance = FVector::Distance(Location, PlayerLocation);
+
+            if (Distance < NearestDistance)
+            {
+                NearestDistance = Distance;
+                NearestPlayer = PlayerPawn;
+            }
+        }
+    }
+
+    return NearestPlayer;
+}
+```
+첫번째로 Enemy는 가장 가까이에 위치한 Player를 찾습니다.
+GameState에 저장된 PlayerArray를 통해 Level에 존재하는 모든 Player를 배열로 가져옵니다.
+그 후 범위기반 반복문을 통해 일전에 가장 가까운 Weapon을 찾아낸 것과 같이 동일하게 가장 가까운 Player를 찾아 반환합니다.
+
+찾으면 반환된 Actor를 연결된 BlackBoard의 Target 값에 할당합니다.
+
+```cpp
+EBTNodeResult::Type UUpdateTargetLocation::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
+{
+	UBlackboardComponent* BBC = OwnerComp.GetBlackboardComponent();
+
+	if(BBC)
+	{
+		AActor* Player = Cast<AActor>(BBC->GetValueAsObject(TEXT("Target")));
+
+		if(Player)
+		{
+			BBC->SetValueAsVector(TEXT("TargetLocation"), Player->GetActorLocation());
+			return EBTNodeResult::Succeeded;
+		}
+		else
+		{
+			return EBTNodeResult::Failed;
+		}
+
+	}
+	else
+	{
+		return EBTNodeResult::Failed;
+	}
+}
+```
+그 다음 Target에 설정된 Actor의 Location을 가져와 TargetLocation을 업데이트 해줍니다.
+
+```cpp
+EBTNodeResult::Type UTargetMoveTo::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
+{
+	UBlackboardComponent* BlackboardComp = OwnerComp.GetBlackboardComponent();
+
+	AEnemy* CastEnemy = Cast<AEnemy>(OwnerComp.GetAIOwner()->GetPawn());
+
+	if (!(CastEnemy->IsDead))
+	{
+
+		if (BlackboardComp)
+		{
+			AVampireSurvivalCharacter* Character = Cast<AVampireSurvivalCharacter>(BlackboardComp->GetValueAsObject(TEXT("Target")));
+
+			if (Character)
+			{
+				FVector TargetLocation = Character->GetActorLocation();
+				FVector ALocation = OwnerComp.GetAIOwner()->GetPawn()->GetActorLocation();
+
+				double Distance = FVector::Distance(ALocation, TargetLocation);
+
+				if (Distance < 200)
+				{
+					return EBTNodeResult::Succeeded;
+				}
+				else
+				{
+					OwnerComp.GetAIOwner()->MoveToLocation(TargetLocation);
+				}
+
+			}
+
+		}
+	}
+
+	return EBTNodeResult::Failed;
+}
+```
+Location이 업데이트 되면, 해당 Location으로 움직입니다.
+우선 해당 Target Location과 거리를 계산하여 200보다 큰 경우는 MoveToLocation을 통해 이동하고, 작은 경우는 Succeeded를 반환하여 다음 Task를 실행되도록 합니다.
+
+```cpp
+EBTNodeResult::Type UBTTask_Attack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
+{
+	AEnemy* CastEnemy = Cast<AEnemy>(OwnerComp.GetAIOwner()->GetPawn());
+
+	if (!(CastEnemy->IsDead))
+	{
+		uint8 RandomAttack = rand() % 2;
+		UAnimMontage* AttackAnim = nullptr;
+
+		switch (RandomAttack)
+		{
+		case 1:
+			AttackAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Enemy/Animation/Zombie_Attack__1__Montage.Zombie_Attack__1__Montage'"));
+			break;
+		default:
+			AttackAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Enemy/Animation/Zombie_Attack_Montage.Zombie_Attack_Montage'"));
+			break;
+		}
+
+
+		CastEnemy->CantMove();
+		CastEnemy->Req_Attack(AttackAnim);
+	}
+
+	return EBTNodeResult::Succeeded;
+}
+```
+2개의 Animation 중 하나가 실행되도록 랜덤한 값을 계산하여 Switch/case 문을 통한 각기 다른 Anim Montage를 실행킵니다.
+공격 시에는 움직이지 않도록 CantMove 함수를 통해 변수를 변경하여, 공격 Anim Montage에서는 멈춘 적이 다시 움직이도록 speed 변수를 바꿀 EndAttack Notify가 실행됩니다.
+
+```cpp
+void UEndAttackNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
+{
+	AEnemy* Character = Cast<AEnemy>(MeshComp->GetOwner());
+
+	if (Character)
+	{
+		Character->CanMove();
+	}
+}
+```
+해당 Anim Montage가 실행되고 종료될 때쯤 EndAttack Notify가 실행되며, 여기서 다시 적이 움직일 수 있도록 speed 변수를 변경합니다.
+
+```cpp
+void AEnemy::OnReq_UpdateHP()
+{
+	if (Health > 0)
+	{
+		UAnimMontage* HitAnim = LoadObject<UAnimMontage>(nullptr, TEXT("/Script/Engine.AnimMontage'/Game/SeongWon/Animation/Enemy/Animation/Zombie_Reaction_Hit_Montage.Zombie_Reaction_Hit_Montage'"));
+		if (HitAnim)
+		{
+			PlayAnimMontage(HitAnim);
+		}
+	}
+	else
+	{
+		if (!IsDead)
+		{
+			IsDead = true;
+			DoDeath();
+		}
+	}
+}
+
+void AEnemy::DoDeath()
+{
+	Server_DoDeath();
+}
+
+void AEnemy::Server_DoDeath_Implementation()
+{
+
+	if (HasAuthority())
+	{
+		GetWorld()->SpawnActor<AGoldActor>(GetActorLocation(), GetActorRotation());
+	}
+
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	GetCharacterMovement()->MaxWalkSpeed = 0;
+	GetWorld()->GetTimerManager().SetTimer(EnemyTimerHandle, this, &AEnemy::DestroyActor, 3.0f, false);
+}
+```
+마지막으로 적이 총의 Line Trace에 의해 Hit한 경우 Hit Anim Montage가 실행되며, 체력이 0인 경우 DoDeath 함수를 호출합니다.
+해당 함수는 서버의 Server_DoDeath 함수를 호출하며, Server 기준 Gold를 위치에 생성하고 Enemy는 Mesh, Collision, Speed 값을 바꾸고 일정 시간 후 DestroyActor가 호출되도록 하였습니다.
 </details>
